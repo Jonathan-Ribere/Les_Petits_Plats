@@ -1,0 +1,14 @@
+{
+  "name": "les_petits_plats",
+  "version": "1.0.0",
+  "description": "Développez un algorithme de recherche en JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jonathan Ribiere",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.0-alpha2"
+  }
+}
