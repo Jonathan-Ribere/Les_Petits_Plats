@@ -30,7 +30,7 @@ const CreatCard = (recipe) => {
   article.appendChild(txtCard);
 
   const headerCard = document.createElement("div");
-  headerCard.classList.add("d-flex", "justify-content-between", "mb-3");
+  headerCard.classList.add("headerCard");
   txtCard.appendChild(headerCard);
 
   const nameMenu = document.createElement("div");
@@ -67,11 +67,21 @@ const CreatCard = (recipe) => {
   for (const ingredient of ingredients) {
     // boucle pour ajouter chaque ingrédient
     const li = document.createElement("li");
+    li.classList.add("list");
     li.textContent = `${ingredient.ingredient} : ${ingredient.quantity} ${
       ingredient.unit || ""
     }`; // affichage de la quantité et de l'unité si elle existe
     ul.appendChild(li);
   }
+
+  const prepa = document.createElement("div");
+  prepa.classList.add("prepa");
+  mainCard.appendChild(prepa);
+
+  const prepaRecette = document.createElement("p");
+  prepaRecette.classList.add("recette");
+  prepaRecette.textContent = recipe.description;
+  prepa.appendChild(prepaRecette);
 };
 
 async function init() {

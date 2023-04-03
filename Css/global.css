@@ -26,46 +26,70 @@ main {
 .inputSearch {
   background-color: blueviolet;
 }
-
-article{
-    max-width: 380px;
-    max-height: 364px;
+.section{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between;
+}
+article {
+  max-width: 30%;
+  max-height: 364px;
+  margin-top: 2rem;
 }
 
-.imgArticle{
-    width: 380px;
-    height: 178px;
-    background-color: #C7BEBE;
+.imgArticle {
+  height: 178px;
+  background-color: #c7bebe;
 }
-.txtArticle{
-    background-color: #E7E7E7;
-}
-
-.nomMenu{
-    font-size: 18px;
-    font-weight: 400;
-}
-.timeMenu{
-    font-size: 18px;
-    font-weight: 700;
-    align-items: center;
-}
-ul li{
-    list-style: none;
-    padding-left: 0px;
-
-}
-.list{
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 14.4px;
+.txtArticle {
+  background-color: #e7e7e7;
+  padding: 1rem !important;
 }
 
-.qte{
-    font-weight: 400;
+.nomMenu {
+  font-size: 18px;
+  font-weight: 400;
 }
-.recette{
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 12px;
+.timeMenu {
+  font-size: 18px;
+  font-weight: 700;
+  align-items: center;
+}
+ol ul {
+  padding-left: 0px;
+}
+ul li {
+  list-style: none;
+}
+.list {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14.4px;
+}
+
+.qte {
+  font-weight: 400;
+}
+.recette {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.headerCard {
+  display: flex !important;
+  justify-content: space-between;
+  margin-bottom: 1rem !important;
+}
+
+.mainCard {
+  display: flex;
+  width: 100%;
+}
+.divUl{
+  width: 50%;
+}
+.prepa {
+  width: 50%;
 }
