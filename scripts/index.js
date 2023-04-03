@@ -14,7 +14,7 @@ async function getData() {
 
 const CreatCard = (recipe) => {
   // Accéder à la liste des ingrédients
-const ingredients = recipe.ingredients;
+  const ingredients = recipe.ingredients;
   const section = document.querySelector(".section");
 
   const article = document.createElement("article");
@@ -50,7 +50,7 @@ const ingredients = recipe.ingredients;
 
   const timePreparation = document.createElement("span");
   timePreparation.classList.add("timePreparation");
-  timePreparation.textContent = recipe.time
+  timePreparation.textContent = recipe.time;
   time.appendChild(timePreparation);
 
   const mainCard = document.createElement("div");
@@ -64,9 +64,12 @@ const ingredients = recipe.ingredients;
   const ul = document.createElement("ul");
   divUl.appendChild(ul);
 
-  for (const ingredient of ingredients) { // boucle pour ajouter chaque ingrédient
+  for (const ingredient of ingredients) {
+    // boucle pour ajouter chaque ingrédient
     const li = document.createElement("li");
-    li.textContent = `${ingredient.ingredient} : ${ingredient.quantity} ${ingredient.unit || ""}`; // affichage de la quantité et de l'unité si elle existe
+    li.textContent = `${ingredient.ingredient} : ${ingredient.quantity} ${
+      ingredient.unit || ""
+    }`; // affichage de la quantité et de l'unité si elle existe
     ul.appendChild(li);
   }
 };
@@ -77,7 +80,7 @@ async function init() {
     const data = await response.json();
     const recipes = data.recipes;
     console.log(recipes);
-    
+
     for (const recipe of recipes) {
       CreatCard(recipe);
     }
