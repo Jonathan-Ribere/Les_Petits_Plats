@@ -13,7 +13,11 @@ async function getData() {
 }
 
 const CreatCard = (recipe) => {
-  const article = document.querySelector(".card");
+  const section = document.querySelector(".section");
+
+  const article = document.createElement("article");
+  article.classList.add("article");
+  section.appendChild(article);
 
   const imgCard = document.createElement("div");
   imgCard.classList.add("imgCard");
