@@ -86,10 +86,7 @@ const CreatCard = (recipe) => {
 
 async function init() {
   try {
-    const response = await fetch("/data/recipes.json");
-    const data = await response.json();
-    const recipes = data.recipes;
-    console.log(recipes);
+    recipes = await getData()
 
     for (const recipe of recipes) {
       CreatCard(recipe);
@@ -101,4 +98,3 @@ async function init() {
 
 init();
 
-init();

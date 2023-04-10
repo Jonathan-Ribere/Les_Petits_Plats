@@ -36,6 +36,7 @@ article {
   max-width: 30%;
   max-height: 364px;
   margin-top: 2rem;
+  margin-bottom: 50px;
 }
 
 .imgArticle {
@@ -92,4 +93,6 @@ ul li {
 }
 .prepa {
   width: 50%;
+  height: 6rem;
+  overflow: hidden;
 }
