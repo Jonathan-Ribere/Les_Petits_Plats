@@ -13,9 +13,19 @@ searchInput.addEventListener("input", function (event) {
         item.style.display = "none";
       }
     }
+  } else if (caractere.length === 0) {
+    resetSearch();
   } else {
     console.log(
       "Veuillez entrer au moins 3 caractères pour lancer la recherche"
     );
   }
 });
+
+function resetSearch() {
+    let items = document.querySelectorAll('.card');
+    for (let i = 0; i < items.length; i++) {
+      let item = items[i];
+      item.style.display = 'block';
+    }
+  }
