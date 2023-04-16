@@ -62,15 +62,20 @@ const CreatCard = (recipe) => {
   mainCard.appendChild(divUl);
 
   const ul = document.createElement("ul");
+  ul.classList.add("ulList");
   divUl.appendChild(ul);
 
   for (const ingredient of ingredients) {
-    // boucle pour ajouter chaque ingrédient
     const li = document.createElement("li");
     li.classList.add("list");
-    li.textContent = `${ingredient.ingredient} : ${ingredient.quantity} ${
-      ingredient.unit || ""
-    }`; // affichage de la quantité et de l'unité si elle existe
+  
+    const quantitySpan = document.createElement("span");
+    quantitySpan.classList.add("quantity");
+    quantitySpan.textContent = `${ingredient.quantity} ${ingredient.unit || ""}`;
+  
+    li.textContent = `${ingredient.ingredient} : `;
+    li.appendChild(quantitySpan);
+  
     ul.appendChild(li);
   }
 

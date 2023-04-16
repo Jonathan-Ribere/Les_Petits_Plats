@@ -96,3 +96,11 @@ ul li {
   height: 6rem;
   overflow: hidden;
 }
+
+
+.ulList{
+  padding-left: 0rem !important;
+}
+.quantity {
+  font-weight: 400;
+}
