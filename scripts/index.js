@@ -50,7 +50,7 @@ const CreatCard = (recipe) => {
 
   const timePreparation = document.createElement("span");
   timePreparation.classList.add("timePreparation");
-  timePreparation.textContent = recipe.time;
+  timePreparation.textContent = recipe.time + "min";
   time.appendChild(timePreparation);
 
   const mainCard = document.createElement("div");
@@ -68,14 +68,16 @@ const CreatCard = (recipe) => {
   for (const ingredient of ingredients) {
     const li = document.createElement("li");
     li.classList.add("list");
-  
+
     const quantitySpan = document.createElement("span");
     quantitySpan.classList.add("quantity");
-    quantitySpan.textContent = `${ingredient.quantity} ${ingredient.unit || ""}`;
-  
+    quantitySpan.textContent = `${ingredient.quantity} ${
+      ingredient.unit || ""
+    }`;
+
     li.textContent = `${ingredient.ingredient} : `;
     li.appendChild(quantitySpan);
-  
+
     ul.appendChild(li);
   }
 
@@ -91,7 +93,7 @@ const CreatCard = (recipe) => {
 
 async function init() {
   try {
-    recipes = await getData()
+    recipes = await getData();
 
     for (const recipe of recipes) {
       CreatCard(recipe);
@@ -102,4 +104,3 @@ async function init() {
 }
 
 init();
-

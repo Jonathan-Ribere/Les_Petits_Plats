@@ -26,17 +26,18 @@ main {
 .inputSearch {
   background-color: blueviolet;
 }
-.section{
+.section {
   width: 100%;
   display: flex;
-  flex-wrap: wrap; 
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 article {
   max-width: 30%;
   max-height: 364px;
   margin-top: 2rem;
   margin-bottom: 50px;
+  margin-right: 20px;
 }
 
 .imgArticle {
@@ -46,19 +47,22 @@ article {
 .txtArticle {
   background-color: #e7e7e7;
   padding: 1rem !important;
+  min-height: 240px;
 }
 
 .nomMenu {
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
+  display: flex;
+  align-content: center;
 }
 .timeMenu {
   font-size: 18px;
   font-weight: 700;
   align-items: center;
 }
-ol ul {
-  padding-left: 0px;
+.timePreparation {
+  margin-left: 5px;
 }
 ul li {
   list-style: none;
@@ -81,6 +85,7 @@ ul li {
 .headerCard {
   display: flex !important;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 1rem !important;
 }
 
@@ -88,7 +93,7 @@ ul li {
   display: flex;
   width: 100%;
 }
-.divUl{
+.divUl {
   width: 50%;
 }
 .prepa {
@@ -97,8 +102,7 @@ ul li {
   overflow: hidden;
 }
 
-
-.ulList{
+.ulList {
   padding-left: 0rem !important;
 }
 .quantity {
