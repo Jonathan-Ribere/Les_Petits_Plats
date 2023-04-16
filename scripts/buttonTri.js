@@ -1,23 +1,50 @@
-// Récupération de l'élément bouton et de la liste
+// Récupération de l'élément bouton et de la liste Ingredients
+const buttonIngredients = document.getElementById("buttonIngredients");
+const listIngredients = document.getElementById("listIngredients");
+
+// Récupération de l'élément bouton et de la liste Appareils
+const buttonAppareils = document.getElementById("buttonAppareils");
+const listAppareils = document.getElementById("listAppareils");
+
+// Récupération de l'élément bouton et de la liste Ustensiles
 const buttonUstensiles = document.getElementById("buttonUstensiles");
 const listUstensiles = document.getElementById("listUstensiles");
 
 // Création d'un tableau vide pour stocker les données du JSON
 let recipes = [];
 
-async function getData() {
-  try {
-    const response = await fetch("/data/recipes.json");
-    const data = await response.json();
-    recipes = data.recipes;
-    return recipes;
-  } catch (error) {
-    console.error(error);
-  }
+const getData = async () => {
+    try {
+        const response = await fetch("/data/recipes.json");
+        const data = await response.json();
+        recipes = data.recipes;
+        return recipes;
+    } catch (error) {
+        console.error(error);
+    }
 }
 
-function displayListeUstensiles (){
-     // Créer un tableau de tous les ustensiles uniques
+
+const displayListeIngredients = () => {
+  
+   // Créer un tableau de tous les Ingredients uniques
+   const allIngredients = new Set();
+   recipes.forEach((recipe) => {
+     recipe.ingredients.forEach((ingredient) => {
+       allIngredients.add(ingredient.ingredient.toLowerCase()); // Ajouter en minuscule pour éviter les doublons
+     });
+   });
+ 
+   // Créer les éléments de la liste et les ajouter à l'élément de liste HTML
+   allIngredients.forEach((ingredient) => {
+     const li = document.createElement("li");
+     li.textContent = ingredient;
+     listIngredients.appendChild(li);
+   });
+  };
+
+const displayListeUstensiles = () => {
+  // Créer un tableau de tous les ustensiles uniques
   const allUstensiles = new Set();
   recipes.forEach((recipe) => {
     recipe.ustensils.forEach((ustensil) => {
@@ -33,11 +60,10 @@ function displayListeUstensiles (){
   });
 }
 
-async function init() {
-  // Récupérer les données de JSON
+const init = async () => {
   await getData();
-
-  displayListeUstensiles()
+  displayListeIngredients()
+  displayListeUstensiles();
 }
 
 init();
