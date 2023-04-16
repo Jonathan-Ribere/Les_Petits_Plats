@@ -5,7 +5,7 @@ const listUstensiles = document.getElementById("listUstensiles");
 // Création d'un tableau vide pour stocker les données du JSON
 let recipes = [];
 
-async function getDataUstensiles() {
+async function getData() {
   try {
     const response = await fetch("/data/recipes.json");
     const data = await response.json();
@@ -16,11 +16,8 @@ async function getDataUstensiles() {
   }
 }
 
-async function init() {
-  // Récupérer les données de JSON
-  await getDataUstensiles();
-
-  // Créer un tableau de tous les ustensiles uniques
+function displayListeUstensiles (){
+     // Créer un tableau de tous les ustensiles uniques
   const allUstensiles = new Set();
   recipes.forEach((recipe) => {
     recipe.ustensils.forEach((ustensil) => {
@@ -34,6 +31,13 @@ async function init() {
     li.textContent = ustensil;
     listUstensiles.appendChild(li);
   });
+}
+
+async function init() {
+  // Récupérer les données de JSON
+  await getData();
+
+  displayListeUstensiles()
 }
 
 init();
