@@ -1,21 +1,11 @@
+import { getData } from "./api.js";
+
 let recipes = [];
 
-async function getData() {
-  try {
-    const response = await fetch("/data/recipes.json");
-    const data = await response.json();
-    recipes = data.recipes;
-    console.log(recipes);
-    return recipes;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-const CreatCard = (recipe) => {
+const creatCard = (recipe) => {
   // Accéder à la liste des ingrédients
   const ingredients = recipe.ingredients;
-  const section = document.querySelector(".section");
+  const section = document.querySelector("#section");
 
   const article = document.createElement("article");
   article.classList.add("article");
@@ -96,7 +86,7 @@ async function init() {
     recipes = await getData();
 
     for (const recipe of recipes) {
-      CreatCard(recipe);
+      creatCard(recipe);
     }
   } catch (error) {
     console.error(error);

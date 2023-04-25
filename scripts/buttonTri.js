@@ -24,10 +24,10 @@ const getData = async () => {
   }
 };
 
-const displayListeIngredients = () => {
+const displayListeIngredients = (recipesArray) => {
   // Créer un tableau de tous les Ingredients uniques
   const allIngredients = new Set();
-  recipes.forEach((recipe) => {
+  recipesArray.forEach((recipe) => {
     recipe.ingredients.forEach((ingredient) => {
       allIngredients.add(ingredient.ingredient.toLowerCase()); // Ajouter en minuscule pour éviter les doublons
     });
@@ -92,9 +92,11 @@ const afficherTexte = (event) => {
     li.addEventListener("click", afficherTexte);
   });
   */
+
+
 const init = async () => {
   await getData();
-  displayListeIngredients();
+  displayListeIngredients(recipes);
   displayListeAppareils();
   displayListeUstensiles();
 };
