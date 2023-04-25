@@ -73,27 +73,6 @@ const displayListeUstensiles = () => {
   });
 };
 
-/*
-// Fonction qui affiche le texte du li dans la console
-const afficherTexte = (event) => {
-    console.log(event.target.textContent);
-  };
-  
-  // Ajouter un gestionnaire d'événements "click" à chaque élément de liste
-  listIngredients.querySelectorAll("li").forEach((li) => {
-    li.addEventListener("click", afficherTexte);
-  });
-  
-  listAppareils.querySelectorAll("li").forEach((li) => {
-    li.addEventListener("click", afficherTexte);
-  });
-  
-  listUstensiles.querySelectorAll("li").forEach((li) => {
-    li.addEventListener("click", afficherTexte);
-  });
-  */
-
-
 const init = async () => {
   await getData();
   displayListeIngredients(recipes);
