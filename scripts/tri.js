@@ -1,4 +1,5 @@
 import { getData } from "./api.js";
+import { displayIngredientsList } from "../test.js"
 
 // Récupère l'input de recherche et le conteneur des articles
 let searchInput = document.querySelector("#search-input");
@@ -12,22 +13,43 @@ getData().then((data) => {
   displayArticles(articles);
 });
 
-// Trie les articles en fonction de la recherche de l'utilisateur
-const sortArticlesOnInput = (articles) => {
+// Cette fonction trie et affiche les articles en fonction de la valeur de recherche entrée
+const sortAndDisplayArticles = (articles) => {
+  // Convertit la valeur de recherche entrée dans la barre de recherche en minuscules
   const searchValue = searchInput.value.toLowerCase();
+
+  // Initialise un tableau pour stocker les articles triés
+  let sortedArticles;
+
+  // Si la valeur de recherche contient au moins 3 caractères, trie les articles en fonction de la valeur de recherche
   if (searchValue.length >= 3) {
-    const filteredArticles = articles.filter((article) => {
+    sortedArticles = articles.filter((article) => {
+      // Convertit les noms d'ingrédients en minuscules et stocke-les dans un tableau
+      const ingredients = article.ingredients.map((ingredient) =>
+        ingredient.ingredient.toLowerCase()
+      );
+     // console.log(ingredients);
+      // Vérifie si la valeur de recherche correspond à un nom d'ingrédient, au nom ou à la description de l'article
       return (
-        article.appliance.toLowerCase().includes(searchValue) ||
+        ingredients.includes(searchValue) ||
         article.name.toLowerCase().includes(searchValue) ||
         article.description.toLowerCase().includes(searchValue)
       );
     });
-    displayArticles(filteredArticles);
-  } else {
-    displayArticles(articles);
   }
+  // Sinon, affiche tous les articles
+  else {
+    sortedArticles = articles;
+  }
+
+  // Affiche les articles triés ou tous les articles si la valeur de recherche ne contient pas au moins 3 caractères
+  displayArticles(sortedArticles);
+  displayIngredientsList(sortedArticles)
 };
+
+searchInput.addEventListener("input", () => {
+  sortAndDisplayArticles(articles);
+});
 
 // Affiche les articles dans le conteneur prévu à cet effet
 const displayArticles = (articles) => {
@@ -112,7 +134,3 @@ const displayArticles = (articles) => {
     prepa.appendChild(prepaRecette);
   });
 };
-
-searchInput.addEventListener("input", () => {
-  sortArticlesOnInput(articles);
-});

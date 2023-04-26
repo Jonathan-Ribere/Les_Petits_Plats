@@ -1,4 +1,4 @@
-import { getData } from "./api.js";
+//import { getData } from "./api.js";
 
 const searchInput = document.querySelector("#search-input");
 const articlesContainer = document.querySelector("#section");
@@ -20,14 +20,14 @@ description.toLowerCase().includes(searchValue)
 };
 
 // Utiliser la syntaxe de destructuration pour rendre le code plus lisible
-const displayIngredientsList = (recipes) => {
+export const displayIngredientsList = (recipes) => {
   // On crée un tableau qui contiendra tous les ingrédients
   const ingredients = [];
-
+console.log("longeur", recipes.length);
   // On parcourt chaque recette
   for (let i = 0; i < recipes.length; i++) {
     const recipe = recipes[i];
-    console.log(recipe);
+   
     // On parcourt chaque ingrédient de la recette
     for (let j = 0; j < recipe.ingredients.length; j++) {
       const ingredient = recipe.ingredients[j];
@@ -114,7 +114,7 @@ prepa.appendChild(prepaRecette);
 
   };
 };
-
+/*
 // Utiliser async/await pour simplifier la gestion des promesses
 const fetchArticles = async () => {
   try {
@@ -124,8 +124,8 @@ const fetchArticles = async () => {
   } catch (error) {
   console.log(error);
   }
-  };
-  
+  };*/
+  /*
   // Utiliser la méthode addEventListener pour détecter les événements sur l'input
   searchInput.addEventListener("input", () => {
   const sortedArticles = sortArticles(articles);
@@ -135,7 +135,7 @@ const fetchArticles = async () => {
   fetchArticles();
 
 
-
+*/
 
 
 /*
