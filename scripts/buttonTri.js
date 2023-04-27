@@ -1,3 +1,4 @@
+
 // Récupération de l'élément bouton et de la liste Ingredients
 const buttonIngredients = document.getElementById("buttonIngredients");
 const listIngredients = document.getElementById("listIngredients");
@@ -40,6 +41,10 @@ const displayListeIngredients = (recipesArray) => {
     listIngredients.appendChild(li);
   });
 };
+const updateIngredientsList = async () => {
+  const data = await getData();
+  displayListeIngredients(data);
+};
 
 const displayListeAppareils = () => {
   // Créer un tableau de tous les Appareils uniques
@@ -73,11 +78,16 @@ const displayListeUstensiles = () => {
   });
 };
 
+
+
+
 const init = async () => {
   await getData();
-  displayListeIngredients(recipes);
-  displayListeAppareils();
-  displayListeUstensiles();
+  if (recipes) {
+    displayListeIngredients(recipes);
+    displayListeAppareils();
+    displayListeUstensiles();
+  }
 };
 
 init();
