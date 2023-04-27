@@ -49,7 +49,7 @@ console.log("longeur", recipes.length);
   // On affiche la liste dans la page
   return ul;
 };
-
+/*
 const displayArticles = (articles) => {
 // Utiliser innerHTML pour effacer le contenu de l'élément
 articlesContainer.innerHTML = "";
@@ -113,7 +113,7 @@ prepaRecette.innerHTML = `<p>${description}</p>`;
 prepa.appendChild(prepaRecette);
 
   };
-};
+};*/
 /*
 // Utiliser async/await pour simplifier la gestion des promesses
 const fetchArticles = async () => {

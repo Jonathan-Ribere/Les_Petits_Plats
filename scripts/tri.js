@@ -51,6 +51,8 @@ searchInput.addEventListener("input", () => {
   sortAndDisplayArticles(articles);
 });
 
+
+/*
 // Affiche les articles dans le conteneur prévu à cet effet
 const displayArticles = (articles) => {
   articlesContainer.innerHTML = "";
@@ -134,3 +136,4 @@ const displayArticles = (articles) => {
     prepa.appendChild(prepaRecette);
   });
 };
+*/
