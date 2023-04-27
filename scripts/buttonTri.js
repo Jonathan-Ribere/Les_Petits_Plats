@@ -26,16 +26,21 @@ const getData = async () => {
 };
 
 const displayListeIngredients = (recipesArray) => {
-  // Créer un tableau de tous les Ingredients triés
-  const ingredients = [];
+  // Créer un objet pour stocker les ingrédients uniques
+  const uniqueIngredients = {};
+
   recipesArray.forEach((recipe) => {
     recipe.ingredients.forEach((ingredient) => {
-      if (!ingredients.includes(ingredient.ingredient)) {
-        ingredients.push(ingredient.ingredient.toLowerCase()); // Ajouter en minuscule pour éviter les doublons
+      // Vérifier si l'ingrédient est déjà présent dans l'objet des ingrédients uniques
+      if (!uniqueIngredients[ingredient.ingredient.toLowerCase()]) {
+        // Si l'ingrédient n'est pas déjà présent, l'ajouter à l'objet
+        uniqueIngredients[ingredient.ingredient.toLowerCase()] = true;
       }
     });
   });
-  ingredients.sort();
+
+  // Créer un tableau des ingrédients uniques triés
+  const ingredients = Object.keys(uniqueIngredients).sort();
 
   // Créer les éléments de la liste et les ajouter à l'élément de liste HTML
   listIngredients.innerHTML = ''; // vider la liste avant de la remplir à nouveau
