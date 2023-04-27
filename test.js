@@ -1,44 +1,37 @@
 //import { getData } from "./api.js";
 
 const searchInput = document.querySelector("#search-input");
-const articlesContainer = document.querySelector("#section");
+//const articlesContainer = document.querySelector("#section");
 
 let articles = [];
 
 // Utiliser une fonction fléchée pour rendre la syntaxe plus concise
 const sortArticles = (articles) => {
-const searchValue = searchInput.value.toLowerCase();
-return articles.filter((article) => {
-// Utiliser la décomposition pour accéder aux propriétés de l'article
-const { appliance, name, description } = article;
-return (
-appliance.toLowerCase().includes(searchValue) ||
-name.toLowerCase().includes(searchValue) ||
-description.toLowerCase().includes(searchValue)
-);
-});
+  const searchValue = searchInput.value.toLowerCase();
+  return articles.filter((article) => {
+    // Utiliser la décomposition pour accéder aux propriétés de l'article
+    const { appliance, name, description } = article;
+    return (
+      appliance.toLowerCase().includes(searchValue) ||
+      name.toLowerCase().includes(searchValue) ||
+      description.toLowerCase().includes(searchValue)
+    );
+  });
 };
 
-// Utiliser la syntaxe de destructuration pour rendre le code plus lisible
 export const displayIngredientsList = (recipes) => {
-  // On crée un tableau qui contiendra tous les ingrédients
   const ingredients = [];
-console.log("longeur", recipes.length);
-  // On parcourt chaque recette
+  console.log("longeur", recipes.length);
   for (let i = 0; i < recipes.length; i++) {
     const recipe = recipes[i];
-   
-    // On parcourt chaque ingrédient de la recette
     for (let j = 0; j < recipe.ingredients.length; j++) {
       const ingredient = recipe.ingredients[j];
-      // On ajoute l'ingrédient à notre tableau s'il n'y est pas déjà
       if (!ingredients.includes(ingredient.ingredient)) {
         ingredients.push(ingredient.ingredient);
       }
     }
   }
 
-  // On crée une liste HTML avec les ingrédients
   const ul = document.createElement("ul");
   for (let i = 0; i < ingredients.length; i++) {
     const li = document.createElement("li");
@@ -46,7 +39,6 @@ console.log("longeur", recipes.length);
     ul.appendChild(li);
   }
 
-  // On affiche la liste dans la page
   return ul;
 };
 /*
@@ -125,7 +117,7 @@ const fetchArticles = async () => {
   console.log(error);
   }
   };*/
-  /*
+/*
   // Utiliser la méthode addEventListener pour détecter les événements sur l'input
   searchInput.addEventListener("input", () => {
   const sortedArticles = sortArticles(articles);
@@ -136,7 +128,6 @@ const fetchArticles = async () => {
 
 
 */
-
 
 /*
 const tableau = await getData()
