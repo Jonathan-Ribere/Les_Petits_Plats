@@ -1,8 +1,7 @@
-//import { updateIngredientsList } from './scripts/buttonTri.js';
-
 export const displayIngredientsList = (recipes) => {
   const ingredients = [];
   console.log("longueur", recipes.length);
+  ingredients.length = 0; // vider le tableau avant de le remplir à nouveau
   for (let i = 0; i < recipes.length; i++) {
     const recipe = recipes[i];
     for (let j = 0; j < recipe.ingredients.length; j++) {
@@ -22,6 +21,7 @@ export const displayIngredientsList = (recipes) => {
     ul.appendChild(li);
   }
 
-  updateIngredientsList(); // Mettre à jour la liste des ingrédients triés
+  //updateIngredientsList(); // Mettre à jour la liste des ingrédients triés
+  displayListeIngredients(recipes); // Mettre à jour la liste des ingrédients dans la page
   return ul;
 };

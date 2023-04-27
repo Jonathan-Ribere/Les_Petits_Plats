@@ -26,16 +26,20 @@ const getData = async () => {
 };
 
 const displayListeIngredients = (recipesArray) => {
-  // Créer un tableau de tous les Ingredients uniques
-  const allIngredients = new Set();
+  // Créer un tableau de tous les Ingredients triés
+  const ingredients = [];
   recipesArray.forEach((recipe) => {
     recipe.ingredients.forEach((ingredient) => {
-      allIngredients.add(ingredient.ingredient.toLowerCase()); // Ajouter en minuscule pour éviter les doublons
+      if (!ingredients.includes(ingredient.ingredient)) {
+        ingredients.push(ingredient.ingredient.toLowerCase()); // Ajouter en minuscule pour éviter les doublons
+      }
     });
   });
+  ingredients.sort();
 
   // Créer les éléments de la liste et les ajouter à l'élément de liste HTML
-  allIngredients.forEach((ingredient) => {
+  listIngredients.innerHTML = ''; // vider la liste avant de la remplir à nouveau
+  ingredients.forEach((ingredient) => {
     const li = document.createElement("li");
     li.textContent = ingredient;
     listIngredients.appendChild(li);
