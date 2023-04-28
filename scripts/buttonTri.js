@@ -50,16 +50,12 @@ const displayListeIngredients = (recipesArray) => {
     listIngredients.appendChild(li);
   });
 };
-const updateIngredientsList = async () => {
-  const data = await getData();
-  displayListeIngredients(data);
-};
+
 ///////////
-const displayListeAppareils = (recipesArray) => {
-    // Créer un objet pour stocker les ingrédients uniques
-    const uniqueAppareils = {};
+const displayListeAppareils = () => {
   // Créer un tableau de tous les Appareils uniques
   const allAppareils = new Set();
+  
   recipes.forEach((recipe) => {
     allAppareils.add(recipe.appliance.toLowerCase()); // Ajouter en minuscule pour éviter les doublons
   });
