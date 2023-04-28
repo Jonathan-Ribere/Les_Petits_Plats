@@ -54,8 +54,10 @@ const updateIngredientsList = async () => {
   const data = await getData();
   displayListeIngredients(data);
 };
-
-const displayListeAppareils = () => {
+///////////
+const displayListeAppareils = (recipesArray) => {
+    // Créer un objet pour stocker les ingrédients uniques
+    const uniqueAppareils = {};
   // Créer un tableau de tous les Appareils uniques
   const allAppareils = new Set();
   recipes.forEach((recipe) => {
