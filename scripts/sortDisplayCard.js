@@ -3,6 +3,7 @@ import { creatCard } from "./displayCard.js";
 import {
   sortDisplayIngredientsList,
   sortDisplayAppliancesList,
+  sortDisplayUstensilsList
 } from "./sortListeInput.js";
 
 // Récupération de l'élément input
@@ -55,6 +56,7 @@ const sortAndDisplayArticles = (articles) => {
   });
   sortDisplayIngredientsList(sortedArticles);
   sortDisplayAppliancesList(sortedArticles);
+  sortDisplayUstensilsList(sortedArticles);
 };
 
 // Ajout d'un écouteur d'événement sur l'élément input pour mettre à jour l'affichage à chaque saisie

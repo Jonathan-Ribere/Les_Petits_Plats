@@ -24,3 +24,18 @@ export const sortDisplayAppliancesList = (recipes) => {
 
   displayListeAppareils(recipes); // Mettre à jour la liste des appareils dans la page
 };
+
+export const sortDisplayUstensilsList = (recipes) => {
+  console.log("je suis la ");
+  const ustensils = {};
+  for (const recipe of recipes) {
+    for (const ustensil of recipe.ustensils) {
+      console.log(ustensil);
+      if (!ustensils[ustensil]) {
+        ustensils[ustensil] = true;
+      }
+    }
+  }
+  displayListeUstensiles(recipes);
+  //displayListeUstensils(recipes); // Mettre à jour la liste des ustensiles dans la page
+};
