@@ -1,4 +1,4 @@
-export const displayIngredientsList = (recipes) => {
+export const sortDisplayIngredientsList = (recipes) => {
   const ingredients = {};
   //console.log("longueur", recipes.length);
   for (let i = 0; i < recipes.length; i++) {
@@ -11,12 +11,12 @@ export const displayIngredientsList = (recipes) => {
       }
     }
   }
-  
+
   displayListeIngredients(recipes); // Mettre à jour la liste des ingrédients dans la page
 
 };
 
-export const displayAppliancesList = (recipes) => {
+export const sortDisplayAppliancesList = (recipes) => {
   const appliances = {};
   console.log(appliances);
   for (const recipe of recipes) {

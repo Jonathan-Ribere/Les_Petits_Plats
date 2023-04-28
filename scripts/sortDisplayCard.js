@@ -1,6 +1,6 @@
 import { getData } from "./api.js";
 import { creatCard } from "./displayCard.js";
-import { displayIngredientsList, displayAppliancesList } from "./sortListeInput.js";
+import { sortDisplayIngredientsList, sortDisplayAppliancesList } from "./sortListeInput.js";
 
 // Récupération de l'élément input
 const searchInput = document.querySelector("#search-input");
@@ -52,8 +52,8 @@ const sortAndDisplayArticles = (articles) => {
   sortedArticles.forEach((article) => {
     creatCard(article, section);
   });
-  displayIngredientsList(sortedArticles);
-  displayAppliancesList(sortedArticles)
+  sortDisplayIngredientsList(sortedArticles);
+  sortDisplayAppliancesList(sortedArticles)
 };
 
 // Ajout d'un écouteur d'événement sur l'élément input pour mettre à jour l'affichage à chaque saisie
