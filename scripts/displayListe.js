@@ -37,6 +37,7 @@ const displayListeIngredients = (recipesArray) => {
       }
     });
   });
+  
 
   // Créer un tableau des ingrédients uniques triés
   const ingredients = Object.keys(uniqueIngredients).sort();
