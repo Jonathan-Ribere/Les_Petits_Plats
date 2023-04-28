@@ -1,3 +1,4 @@
+
 // Récupération de l'élément bouton et de la liste Ingredients
 const buttonIngredients = document.getElementById("buttonIngredients");
 const listIngredients = document.getElementById("listIngredients");
@@ -24,6 +25,16 @@ const getData = async () => {
   }
 };
 
+const addClickHandlerToListItems = (listItems) => {
+  listItems.forEach((li) => {
+    li.addEventListener("click", () => {
+      const searchedLi = li.textContent;
+      // Générer une nouvelle recherche avec l'ingrédient cliqué
+      console.log(`Nouvelle recherche pour l'ingrédient ${searchedLi}`);
+    });
+  });
+};
+
 const displayListeIngredients = (recipesArray) => {
   // Créer un objet pour stocker les ingrédients uniques
   const uniqueIngredients = {};
@@ -37,7 +48,6 @@ const displayListeIngredients = (recipesArray) => {
       }
     });
   });
-  
 
   // Créer un tableau des ingrédients uniques triés
   const ingredients = Object.keys(uniqueIngredients).sort();
@@ -47,9 +57,13 @@ const displayListeIngredients = (recipesArray) => {
   ingredients.forEach((ingredient) => {
     const li = document.createElement("li");
     li.textContent = ingredient;
+
+    addClickHandlerToListItems([li]); // Passer l'élément li dans un tableau
+
     listIngredients.appendChild(li);
   });
 };
+
 
 const displayListeAppareils = (recipes) => {
   // Créer un tableau pour stocker les appareils uniques
@@ -73,6 +87,9 @@ const displayListeAppareils = (recipes) => {
   appareils.forEach((appareil) => {
     const li = document.createElement("li");
     li.textContent = appareil;
+
+    addClickHandlerToListItems([li]); // Passer l'élément li dans un tableau
+
     listAppareils.appendChild(li);
   });
 };
@@ -101,6 +118,9 @@ const displayListeUstensiles = (recipesArray) => {
   ustensiles.forEach((ustensile) => {
     const li = document.createElement("li");
     li.textContent = ustensile;
+
+    addClickHandlerToListItems([li]); // Passer l'élément li dans un tableau
+
     listUstensiles.appendChild(li);
   });
 };
