@@ -53,10 +53,23 @@ export const creatCard = (recipe) => {
   if (recipe.ingredients && recipe.ingredients.length > 0) {
     recipe.ingredients.forEach((ingredient) => {
       const li = document.createElement("li");
-      li.textContent = `${ingredient.ingredient}: ${ingredient.quantity} ${ingredient.unit}`;
+      li.classList.add("liCard");
+  
+      let ingredientString = ingredient.ingredient;
+      if (ingredient.quantity) {
+        ingredientString += `: <span class="ingredient-quantity">${ingredient.quantity}`;
+        if (ingredient.unit) {
+          ingredientString += ` ${ingredient.unit}`;
+        }
+        ingredientString += `</span>`;
+      }
+  
+      li.innerHTML = ingredientString;
       ul.appendChild(li);
     });
   }
+
+  
 
   const prepa = document.createElement("div");
   prepa.classList.add("prepa");

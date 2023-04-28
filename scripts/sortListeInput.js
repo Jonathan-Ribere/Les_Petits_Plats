@@ -36,6 +36,5 @@ export const sortDisplayUstensilsList = (recipes) => {
       }
     }
   }
-  displayListeUstensiles(recipes);
-  //displayListeUstensils(recipes); // Mettre à jour la liste des ustensiles dans la page
+  displayListeUstensiles(recipes); // Mettre à jour la liste des ustensiles dans la page
 };

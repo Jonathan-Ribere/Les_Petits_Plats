@@ -30,7 +30,7 @@ main {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
 }
 article {
   max-width: 30%;
@@ -107,4 +107,13 @@ ul li {
 }
 .quantity {
   font-weight: 400;
+}
+
+.liCard {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ingredient-quantity {
+  font-weight: 300 !important;
 }
