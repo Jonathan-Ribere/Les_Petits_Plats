@@ -1,6 +1,9 @@
 import { getData } from "./api.js";
 import { creatCard } from "./displayCard.js";
-import { sortDisplayIngredientsList, sortDisplayAppliancesList } from "./sortListeInput.js";
+import {
+  sortDisplayIngredientsList,
+  sortDisplayAppliancesList,
+} from "./sortListeInput.js";
 
 // Récupération de l'élément input
 const searchInput = document.querySelector("#search-input");
@@ -11,7 +14,6 @@ let articles = [];
 // Récupération des données depuis l'API et création des cartes d'articles
 getData().then((data) => {
   articles = data;
-  console.log(articles);
   creatCard(articles);
 });
 
@@ -38,7 +40,6 @@ const sortAndDisplayArticles = (articles) => {
     });
   } else {
     // Si la valeur de recherche est inférieure à 3 caractères, on affiche tous les articles
-    console.log("erreur");
     sortedArticles = articles;
   }
 
@@ -53,7 +54,7 @@ const sortAndDisplayArticles = (articles) => {
     creatCard(article, section);
   });
   sortDisplayIngredientsList(sortedArticles);
-  sortDisplayAppliancesList(sortedArticles)
+  sortDisplayAppliancesList(sortedArticles);
 };
 
 // Ajout d'un écouteur d'événement sur l'élément input pour mettre à jour l'affichage à chaque saisie

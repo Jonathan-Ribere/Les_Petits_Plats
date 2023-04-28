@@ -1,4 +1,3 @@
-
 // Récupération de l'élément bouton et de la liste Ingredients
 const buttonIngredients = document.getElementById("buttonIngredients");
 const listIngredients = document.getElementById("listIngredients");
@@ -43,7 +42,7 @@ const displayListeIngredients = (recipesArray) => {
   const ingredients = Object.keys(uniqueIngredients).sort();
 
   // Créer les éléments de la liste et les ajouter à l'élément de liste HTML
-  listIngredients.innerHTML = ''; // vider la liste avant de la remplir à nouveau
+  listIngredients.innerHTML = ""; // vider la liste avant de la remplir à nouveau
   ingredients.forEach((ingredient) => {
     const li = document.createElement("li");
     li.textContent = ingredient;
@@ -51,7 +50,6 @@ const displayListeIngredients = (recipesArray) => {
   });
 };
 
-///////////
 const displayListeAppareils = (recipes) => {
   // Créer un tableau pour stocker les appareils uniques
   const uniqueAppareils = {};
@@ -68,7 +66,7 @@ const displayListeAppareils = (recipes) => {
   const appareils = Object.keys(uniqueAppareils).sort();
 
   // Vider la liste des appareils existants avant de la remplir à nouveau
-  listAppareils.innerHTML = '';
+  listAppareils.innerHTML = "";
 
   // Créer les éléments de la liste et les ajouter à l'élément de liste HTML
   appareils.forEach((appareil) => {
@@ -77,7 +75,6 @@ const displayListeAppareils = (recipes) => {
     listAppareils.appendChild(li);
   });
 };
-
 
 const displayListeUstensiles = () => {
   // Créer un tableau de tous les ustensiles uniques
@@ -96,9 +93,6 @@ const displayListeUstensiles = () => {
   });
 };
 
-
-
-
 const init = async () => {
   await getData();
   if (recipes) {
@@ -109,5 +103,3 @@ const init = async () => {
 };
 
 init();
-
-

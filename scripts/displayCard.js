@@ -51,12 +51,11 @@ export const creatCard = (recipe) => {
 
   // Vérifier si la propriété "ingredients" existe avant d'utiliser la méthode "forEach"
   if (recipe.ingredients && recipe.ingredients.length > 0) {
-      recipe.ingredients.forEach((ingredient) => {
-          const li = document.createElement("li");
-          //console.log(li);
-          li.textContent = `${ingredient.ingredient}: ${ingredient.quantity} ${ingredient.unit}`;
-          ul.appendChild(li);
-      });
+    recipe.ingredients.forEach((ingredient) => {
+      const li = document.createElement("li");
+      li.textContent = `${ingredient.ingredient}: ${ingredient.quantity} ${ingredient.unit}`;
+      ul.appendChild(li);
+    });
   }
 
   const prepa = document.createElement("div");
