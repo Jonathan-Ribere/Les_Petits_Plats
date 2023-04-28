@@ -1,4 +1,5 @@
 
+
 // Récupération de l'élément bouton et de la liste Ingredients
 const buttonIngredients = document.getElementById("buttonIngredients");
 const listIngredients = document.getElementById("listIngredients");
@@ -31,6 +32,7 @@ const addClickHandlerToListItems = (listItems) => {
       const searchedLi = li.textContent;
       // Générer une nouvelle recherche avec l'ingrédient cliqué
       console.log(`Nouvelle recherche pour l'ingrédient ${searchedLi}`);
+      
     });
   });
 };
