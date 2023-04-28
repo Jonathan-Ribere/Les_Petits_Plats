@@ -53,12 +53,17 @@ const displayListeIngredients = (recipesArray) => {
 
 ///////////
 const displayListeAppareils = () => {
+  const uniqueAppareils = {};
   // Créer un tableau de tous les Appareils uniques
   const allAppareils = new Set();
   
   recipes.forEach((recipe) => {
     allAppareils.add(recipe.appliance.toLowerCase()); // Ajouter en minuscule pour éviter les doublons
   });
+
+  // Créer un tableau des ingrédients uniques triés
+  const appareils = Object.keys(recipes).sort();
+  console.log(appareils);
 
   // Créer les éléments de la liste et les ajouter à l'élément de liste HTML
   allAppareils.forEach((appareil) => {

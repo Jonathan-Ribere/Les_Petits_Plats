@@ -37,9 +37,11 @@ export const displayAppliancesList = (recipes) => {
   const ul = document.createElement("ul");
   for (const appliance in appliances) {
     const li = document.createElement("li");
+    console.log(li);
     li.textContent = appliance;
     ul.appendChild(li);
   }
+ 
 
   displayListeAppareils(recipes); // Mettre à jour la liste des appareils dans la page
   return ul;
