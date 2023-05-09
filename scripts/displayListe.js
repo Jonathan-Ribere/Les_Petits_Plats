@@ -38,25 +38,22 @@ const addClickHandlerToListItems = (listItems) => {
 };
 
 const displayListeIngredients = (recipesArray) => {
-  // Créer un objet pour stocker les ingrédients uniques
-  const uniqueIngredients = {};
+  // Créer un tableau pour stocker les ingrédients uniques
+  const uniqueIngredients = [];
 
   recipesArray.forEach((recipe) => {
     recipe.ingredients.forEach((ingredient) => {
-      // Vérifier si l'ingrédient est déjà présent dans l'objet des ingrédients uniques
-      if (!uniqueIngredients[ingredient.ingredient.toLowerCase()]) {
-        // Si l'ingrédient n'est pas déjà présent, l'ajouter à l'objet
-        uniqueIngredients[ingredient.ingredient.toLowerCase()] = true;
+      // Vérifier si l'ingrédient est déjà présent dans le tableau des ingrédients uniques
+      if (!uniqueIngredients.includes(ingredient.ingredient.toLowerCase())) {
+        // Si l'ingrédient n'est pas déjà présent, l'ajouter au tableau
+        uniqueIngredients.push(ingredient.ingredient.toLowerCase());
       }
     });
   });
 
-  // Créer un tableau des ingrédients uniques triés
-  const ingredients = Object.keys(uniqueIngredients).sort();
-
   // Créer les éléments de la liste et les ajouter à l'élément de liste HTML
   listIngredients.innerHTML = ""; // vider la liste avant de la remplir à nouveau
-  ingredients.forEach((ingredient) => {
+  uniqueIngredients.sort().forEach((ingredient) => {
     const li = document.createElement("li");
     li.textContent = ingredient;
 
@@ -67,20 +64,22 @@ const displayListeIngredients = (recipesArray) => {
 };
 
 
+
 const displayListeAppareils = (recipes) => {
   // Créer un tableau pour stocker les appareils uniques
-  const uniqueAppareils = {};
+  const uniqueAppareils = [];
 
   // Boucler sur chaque recette pour trouver les appareils uniques
   recipes.forEach((recipe) => {
-    // Si l'appareil n'existe pas encore dans le tableau des appareils uniques, l'ajouter
-    if (!uniqueAppareils[recipe.appliance.toLowerCase()]) {
-      uniqueAppareils[recipe.appliance.toLowerCase()] = true;
+    // Vérifier si l'appareil est déjà présent dans le tableau des appareils uniques
+    if (!uniqueAppareils.includes(recipe.appliance.toLowerCase())) {
+      // Si l'appareil n'est pas déjà présent, l'ajouter au tableau
+      uniqueAppareils.push(recipe.appliance.toLowerCase());
     }
   });
 
   // Créer un tableau des appareils uniques triés
-  const appareils = Object.keys(uniqueAppareils).sort();
+  const appareils = uniqueAppareils.sort();
 
   // Vider la liste des appareils existants avant de la remplir à nouveau
   listAppareils.innerHTML = "";
@@ -96,22 +95,23 @@ const displayListeAppareils = (recipes) => {
   });
 };
 
+
 const displayListeUstensiles = (recipesArray) => {
-  // Créer un objet pour stocker les ustensiles uniques
-  const uniqueUstensiles = {};
+  // Créer un tableau pour stocker les ustensiles uniques
+  const uniqueUstensiles = [];
 
   recipesArray.forEach((recipe) => {
     recipe.ustensils.forEach((ustensile) => {
-      // Vérifier si l'ustensile est déjà présent dans l'objet des ustensiles uniques
-      if (!uniqueUstensiles[ustensile.toLowerCase()]) {
-        // Si l'ustensile n'est pas déjà présent, l'ajouter à l'objet
-        uniqueUstensiles[ustensile.toLowerCase()] = true;
+      // Vérifier si l'ustensile est déjà présent dans le tableau des ustensiles uniques
+      if (!uniqueUstensiles.includes(ustensile.toLowerCase())) {
+        // Si l'ustensile n'est pas déjà présent, l'ajouter au tableau
+        uniqueUstensiles.push(ustensile.toLowerCase());
       }
     });
   });
 
-  // Créer un tableau des ustensiles uniques triés
-  const ustensiles = Object.keys(uniqueUstensiles).sort();
+  // Trier le tableau des ustensiles uniques
+  const ustensiles = uniqueUstensiles.sort();
 
   // Vider la liste des ustensiles existants avant de la remplir à nouveau
   listUstensiles.innerHTML = "";
@@ -126,6 +126,7 @@ const displayListeUstensiles = (recipesArray) => {
     listUstensiles.appendChild(li);
   });
 };
+
 
 
 const init = async () => {

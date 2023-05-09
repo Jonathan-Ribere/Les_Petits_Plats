@@ -26,11 +26,11 @@ export const sortDisplayAppliancesList = (recipes) => {
 };
 
 export const sortDisplayUstensilsList = (recipes) => {
-  console.log("je suis la ");
+  //console.log("je suis la ");
   const ustensils = {};
   for (const recipe of recipes) {
     for (const ustensil of recipe.ustensils) {
-      console.log(ustensil);
+      //console.log(ustensil);
       if (!ustensils[ustensil]) {
         ustensils[ustensil] = true;
       }
