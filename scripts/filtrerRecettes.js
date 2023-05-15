@@ -1,3 +1,4 @@
+/*
 // Créez une variable pour stocker votre tableau de recettes
 let recettes = [...];
 
@@ -61,3 +62,4 @@ boutonsUstensiles.forEach(bouton => {
     filtrerUstensiles(ustensile);
   });
 });
+*/

@@ -21,7 +21,7 @@ getData().then((data) => {
 });
 
 // Fonction pour trier et afficher les articles
-const sortAndDisplayArticles = (articles) => {
+export const sortAndDisplayArticles = (articles) => {
   // Récupération de la valeur de recherche et conversion en minuscules
   const searchValue = searchInput.value.toLowerCase();
 
@@ -67,8 +67,9 @@ searchInput.addEventListener("input", () => {
 });
 
 
+
 // Fonction pour filtrer les recettes en fonction des filtres
-export function filtrerRecettes(filtreIngredients) {
+ export function filtrerRecettes(filtreIngredients) {
   let recettesFiltrees = articles.filter((recette) => {
     // Vérifie si la recette contient tous les ingrédients filtrés
     if (

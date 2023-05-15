@@ -24,14 +24,21 @@ const addClickHandlerToListItems = (listItems) => {
   listItems.forEach((li) => {
     li.addEventListener("click", () => {
       const searchedLi = li.textContent;
-      // Récupération des ingrédients cliqués
-      const clickedIngredients = [searchedLi];
-      console.log(`Nouvelle recherche pour l'ingrédient ${searchedLi}`);
-      // Filtrage des recettes avec les ingrédients cliqués
-      filtrerRecettes(clickedIngredients);
+      // Ajout de l'ingrédient cliqué aux ingrédients filtrés
+      filtreIngredients.push(searchedLi);
+      console.log(`Nouvelle recherche pour les ingrédients ${filtreIngredients}`);
+      // Filtrage des recettes avec les ingrédients filtrés
+      filtrerRecettes(filtreIngredients);
     });
   });
 };
+
+
+
+
+
+
+
 
 export const displayListeIngredients = (recipesArray) => {
   // Créer un tableau pour stocker les ingrédients uniques
