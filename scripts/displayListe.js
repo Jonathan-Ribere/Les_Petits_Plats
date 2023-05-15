@@ -1,4 +1,4 @@
-
+import {getData} from "./api.js"
 
 // Récupération de l'élément bouton et de la liste Ingredients
 const buttonIngredients = document.getElementById("buttonIngredients");
@@ -12,19 +12,6 @@ const listAppareils = document.getElementById("listAppareils");
 const buttonUstensiles = document.getElementById("buttonUstensiles");
 const listUstensiles = document.getElementById("listUstensiles");
 
-// Création d'un tableau vide pour stocker les données du JSON
-let recipes = [];
-
-const getData = async () => {
-  try {
-    const response = await fetch("/data/recipes.json");
-    const data = await response.json();
-    recipes = data.recipes;
-    return recipes;
-  } catch (error) {
-    console.error(error);
-  }
-};
 
 const addClickHandlerToListItems = (listItems) => {
   listItems.forEach((li) => {
@@ -37,7 +24,7 @@ const addClickHandlerToListItems = (listItems) => {
   });
 };
 
-const displayListeIngredients = (recipesArray) => {
+export const displayListeIngredients = (recipesArray) => {
   // Créer un tableau pour stocker les ingrédients uniques
   const uniqueIngredients = [];
 
@@ -65,7 +52,7 @@ const displayListeIngredients = (recipesArray) => {
 
 
 
-const displayListeAppareils = (recipes) => {
+export const displayListeAppareils = (recipes) => {
   // Créer un tableau pour stocker les appareils uniques
   const uniqueAppareils = [];
 
@@ -96,7 +83,7 @@ const displayListeAppareils = (recipes) => {
 };
 
 
-const displayListeUstensiles = (recipesArray) => {
+export const displayListeUstensiles = (recipesArray) => {
   // Créer un tableau pour stocker les ustensiles uniques
   const uniqueUstensiles = [];
 
@@ -130,7 +117,8 @@ const displayListeUstensiles = (recipesArray) => {
 
 
 const init = async () => {
-  await getData();
+  const recipes = await getData()
+  
   if (recipes) {
     displayListeIngredients(recipes);
     displayListeAppareils(recipes);

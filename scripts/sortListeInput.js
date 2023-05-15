@@ -1,6 +1,6 @@
 export const sortDisplayIngredientsList = (recipes) => {
   const ingredients = {};
-  for (let i = 0; i < recipes.length; i++) {
+  /*for (let i = 0; i < recipes.length; i++) {
     const recipe = recipes[i];
     for (let j = 0; j < recipe.ingredients.length; j++) {
       const ingredient = recipe.ingredients[j];
@@ -9,7 +9,7 @@ export const sortDisplayIngredientsList = (recipes) => {
       }
     }
   }
-
+console.log(ingredients);*/
   displayListeIngredients(recipes); // Mettre à jour la liste des ingrédients dans la page
 };
 
