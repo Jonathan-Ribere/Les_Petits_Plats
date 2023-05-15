@@ -1,4 +1,5 @@
 import {getData} from "./api.js"
+import {filtrerRecettes} from "./sortDisplayCard.js"
 
 // Récupération de l'élément bouton et de la liste Ingredients
 const buttonIngredients = document.getElementById("buttonIngredients");
@@ -13,13 +14,21 @@ const buttonUstensiles = document.getElementById("buttonUstensiles");
 const listUstensiles = document.getElementById("listUstensiles");
 
 
+// Créez des variables pour stocker les valeurs actuelles des filtres
+let filtreNom = '';
+let filtreIngredients = [];
+let filtreUstensiles = [];
+let filtreAppareils = [];
+
 const addClickHandlerToListItems = (listItems) => {
   listItems.forEach((li) => {
     li.addEventListener("click", () => {
       const searchedLi = li.textContent;
-      // Générer une nouvelle recherche avec l'ingrédient cliqué
+      // Récupération des ingrédients cliqués
+      const clickedIngredients = [searchedLi];
       console.log(`Nouvelle recherche pour l'ingrédient ${searchedLi}`);
-      
+      // Filtrage des recettes avec les ingrédients cliqués
+      filtrerRecettes(clickedIngredients);
     });
   });
 };

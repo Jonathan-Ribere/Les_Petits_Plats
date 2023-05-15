@@ -1,14 +1,9 @@
 import { getData } from "./api.js";
 import { creatCard } from "./displayCard.js";
 import {displayListeIngredients, displayListeAppareils, displayListeUstensiles } from "./displayListe.js"
-import {
-  sortDisplayIngredientsList,
-  sortDisplayAppliancesList,
-  sortDisplayUstensilsList
-} from "./sortListeInput.js";
 
 // Créez des variables pour stocker les valeurs actuelles des filtres
-let filtreNom = '';
+
 let filtreIngredients = [];
 let filtreUstensiles = [];
 let filtreAppareils = [];
@@ -62,13 +57,8 @@ const sortAndDisplayArticles = (articles) => {
     creatCard(article, section);
   });
   displayListeIngredients(sortedArticles)
-  //sortDisplayIngredientsList(sortedArticles);
-
   displayListeAppareils(sortedArticles);
-  //sortDisplayAppliancesList(sortedArticles);
-
   displayListeUstensiles(sortedArticles);
-  //sortDisplayUstensilsList(sortedArticles);
 };
 
 // Ajout d'un écouteur d'événement sur l'élément input pour mettre à jour l'affichage à chaque saisie
@@ -78,28 +68,24 @@ searchInput.addEventListener("input", () => {
 
 
 // Fonction pour filtrer les recettes en fonction des filtres
-function filtrerRecettes() {
-  let recettesFiltrees = articles.filter(recette => {
-    // Vérifiez si la recette contient le nom filtré
-    if (filtreNom !== '' && !recette.name.toLowerCase().includes(filtreNom.toLowerCase())) {
+export function filtrerRecettes(filtreIngredients) {
+  let recettesFiltrees = articles.filter((recette) => {
+    // Vérifie si la recette contient tous les ingrédients filtrés
+    if (
+      filtreIngredients.length > 0 &&
+      !filtreIngredients.every((ingredient) =>
+        recette.ingredients.some(
+          (recetteIngredient) =>
+            recetteIngredient.ingredient.toLowerCase() ===
+            ingredient.toLowerCase()
+        )
+      )
+    ) {
       return false;
     }
-    // Vérifiez si la recette contient tous les ingrédients filtrés
-    if (filtreIngredients.length > 0 && !filtreIngredients.every(ingredient => recette.ingredients.includes(ingredient))) {
-      return false;
-    }
-    // Vérifiez si la recette contient tous les ustensiles filtrés
-    if (filtreUstensiles.length > 0 && !filtreUstensiles.every(ustensile => recette.ustensils.includes(ustensile))) {
-      return false;
-    }
-    // Vérifiez si la recette contient tous les appareils filtrés
-    if (filtreAppareils.length > 0 && !filtreAppareils.every(appareil => recette.appliance === appareil)) {
-      return false;
-    }
-    // Si toutes les conditions sont remplies, la recette est incluse dans les recettes filtrées
     return true;
   });
 
-  // Affichez les recettes filtrées
+  // Affiche les recettes filtrées
   sortAndDisplayArticles(recettesFiltrees);
 }
