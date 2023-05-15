@@ -117,3 +117,20 @@ ul li {
 .ingredient-quantity {
   font-weight: 300 !important;
 }
+
+.ingredient-button {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #333;
+  display: inline-block;
+  font-size: 14px;
+  margin-right: 10px;
+  padding: 5px 10px;
+  position: relative;
+}
+.ingredient-button .icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}

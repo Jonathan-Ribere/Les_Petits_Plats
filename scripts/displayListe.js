@@ -1,5 +1,5 @@
-import {getData} from "./api.js"
-import {filtrerRecettes} from "./sortDisplayCard.js"
+import { getData } from "./api.js";
+import { filtrerRecettes } from "./sortDisplayCard.js";
 
 // Récupération de l'élément bouton et de la liste Ingredients
 const buttonIngredients = document.getElementById("buttonIngredients");
@@ -13,31 +13,45 @@ const listAppareils = document.getElementById("listAppareils");
 const buttonUstensiles = document.getElementById("buttonUstensiles");
 const listUstensiles = document.getElementById("listUstensiles");
 
-
 // Créez des variables pour stocker les valeurs actuelles des filtres
-let filtreNom = '';
 let filtreIngredients = [];
 let filtreUstensiles = [];
 let filtreAppareils = [];
 
 const addClickHandlerToListItems = (listItems) => {
+  const filtreIngredients = [];
+
   listItems.forEach((li) => {
     li.addEventListener("click", () => {
       const searchedLi = li.textContent;
-      // Ajout de l'ingrédient cliqué aux ingrédients filtrés
+      // Ajout de l'ingrédient cliqué au tableau filtreIngredients
       filtreIngredients.push(searchedLi);
       console.log(`Nouvelle recherche pour les ingrédients ${filtreIngredients}`);
-      // Filtrage des recettes avec les ingrédients filtrés
+      // Création d'un bouton pour l'ingrédient cliqué
+      const button = document.createElement("button");
+      button.textContent = searchedLi;
+      const deleteIcon = document.createElement("i");
+      deleteIcon.className = "fas fa-times";
+      button.appendChild(deleteIcon);
+      document.getElementById("filtres").appendChild(button);
+      // Ajout d'un gestionnaire d'événements au bouton pour le supprimer
+      button.addEventListener("click", () => {
+        // Suppression de l'ingrédient cliqué du tableau filtreIngredients
+        const index = filtreIngredients.indexOf(searchedLi);
+        if (index > -1) {
+          filtreIngredients.splice(index, 1);
+        }
+        console.log(`Nouvelle recherche pour les ingrédients ${filtreIngredients}`);
+        // Suppression du bouton du DOM
+        button.parentNode.removeChild(button);
+        // Filtrage des recettes avec les ingrédients cliqués
+        filtrerRecettes(filtreIngredients);
+      });
+      // Filtrage des recettes avec les ingrédients cliqués
       filtrerRecettes(filtreIngredients);
     });
   });
 };
-
-
-
-
-
-
 
 
 export const displayListeIngredients = (recipesArray) => {
@@ -65,8 +79,6 @@ export const displayListeIngredients = (recipesArray) => {
     listIngredients.appendChild(li);
   });
 };
-
-
 
 export const displayListeAppareils = (recipes) => {
   // Créer un tableau pour stocker les appareils uniques
@@ -97,7 +109,6 @@ export const displayListeAppareils = (recipes) => {
     listAppareils.appendChild(li);
   });
 };
-
 
 export const displayListeUstensiles = (recipesArray) => {
   // Créer un tableau pour stocker les ustensiles uniques
@@ -130,11 +141,9 @@ export const displayListeUstensiles = (recipesArray) => {
   });
 };
 
-
-
 const init = async () => {
-  const recipes = await getData()
-  
+  const recipes = await getData();
+
   if (recipes) {
     displayListeIngredients(recipes);
     displayListeAppareils(recipes);
