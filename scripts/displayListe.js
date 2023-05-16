@@ -30,6 +30,7 @@ const addClickHandlerToListItems = (listItems) => {
       // Création d'un bouton pour l'ingrédient cliqué
       const button = document.createElement("button");
       button.textContent = searchedLi;
+      button.classList.add("btn", "btn-primary", "rounded-pill", "me-3");
       const deleteIcon = document.createElement("i");
       deleteIcon.className = "fas fa-times";
       button.appendChild(deleteIcon);
@@ -52,6 +53,7 @@ const addClickHandlerToListItems = (listItems) => {
     });
   });
 };
+
 
 
 export const displayListeIngredients = (recipesArray) => {
