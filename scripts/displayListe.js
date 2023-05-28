@@ -18,42 +18,35 @@ let filtreIngredients = [];
 let filtreUstensiles = [];
 let filtreAppareils = [];
 
-const addClickHandlerToListItems = (listItems) => {
-  const filtreIngredients = [];
-
-  listItems.forEach((li) => {
-    li.addEventListener("click", () => {
-      const searchedLi = li.textContent;
-      // Ajout de l'ingrédient cliqué au tableau filtreIngredients
-      filtreIngredients.push(searchedLi);
-      console.log(`Nouvelle recherche pour les ingrédients ${filtreIngredients}`);
-      // Création d'un bouton pour l'ingrédient cliqué
-      const button = document.createElement("button");
-      button.textContent = searchedLi;
-      button.classList.add("btn", "btn-primary", "rounded-pill", "me-3");
-      const deleteIcon = document.createElement("i");
-      deleteIcon.className = "fas fa-times";
-      button.appendChild(deleteIcon);
-      document.getElementById("filtres").appendChild(button);
-      // Ajout d'un gestionnaire d'événements au bouton pour le supprimer
-      button.addEventListener("click", () => {
-        // Suppression de l'ingrédient cliqué du tableau filtreIngredients
-        const index = filtreIngredients.indexOf(searchedLi);
-        if (index > -1) {
-          filtreIngredients.splice(index, 1);
-        }
-        console.log(`Nouvelle recherche pour les ingrédients ${filtreIngredients}`);
-        // Suppression du bouton du DOM
-        button.parentNode.removeChild(button);
-        // Filtrage des recettes avec les ingrédients cliqués
-        filtrerRecettes(filtreIngredients);
-      });
-      // Filtrage des recettes avec les ingrédients cliqués
-      filtrerRecettes(filtreIngredients);
-    });
+const addFilter = (ingredient) => {
+  const searchedLi = ingredient;
+  // Ajout de l'ingrédient cliqué au tableau filtreIngredients
+  filtreIngredients.push(searchedLi);
+  console.log(`Nouvelle recherche pour les ingrédients ${filtreIngredients}`);
+  // Création d'un bouton pour l'ingrédient cliqué
+  const button = document.createElement("button");
+  button.textContent = searchedLi;
+  button.classList.add("btn", "btn-primary", "rounded-pill", "me-3");
+  const deleteIcon = document.createElement("i");
+  deleteIcon.className = "fas fa-times";
+  button.appendChild(deleteIcon);
+  document.getElementById("filtres").appendChild(button);
+  // Ajout d'un gestionnaire d'événements au bouton pour le supprimer
+  button.addEventListener("click", () => {
+    // Suppression de l'ingrédient cliqué du tableau filtreIngredients
+    const index = filtreIngredients.indexOf(searchedLi);
+    if (index > -1) {
+      filtreIngredients.splice(index, 1);
+    }
+    console.log(`Nouvelle recherche pour les ingrédients ${filtreIngredients}`);
+    // Suppression du bouton du DOM
+    button.parentNode.removeChild(button);
+    // Filtrage des recettes avec les ingrédients cliqués
+    filtrerRecettes(filtreIngredients);
   });
-};
-
+  // Filtrage des recettes avec les ingrédients cliqués
+  filtrerRecettes(filtreIngredients);
+}
 
 
 export const displayListeIngredients = (recipesArray) => {
@@ -76,7 +69,8 @@ export const displayListeIngredients = (recipesArray) => {
     const li = document.createElement("li");
     li.textContent = ingredient;
 
-    addClickHandlerToListItems([li]); // Passer l'élément li dans un tableau
+    li.addEventListener("click",() => {addFilter()});
+
 
     listIngredients.appendChild(li);
   });
@@ -106,7 +100,9 @@ export const displayListeAppareils = (recipes) => {
     const li = document.createElement("li");
     li.textContent = appareil;
 
-    addClickHandlerToListItems([li]); // Passer l'élément li dans un tableau
+    li.addEventListener("click", () => {
+      addFilter(appareil); // Appeler la fonction addFilter en passant l'appareil cliqué
+    });
 
     listAppareils.appendChild(li);
   });
