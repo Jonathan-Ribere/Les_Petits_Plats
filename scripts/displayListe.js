@@ -42,13 +42,41 @@ const addFilter = (ingredient) => {
     // Suppression du bouton du DOM
     button.parentNode.removeChild(button);
     // Filtrage des recettes avec les ingrédients cliqués
-    filtrerRecettes(filtreIngredients);
+    filtrerRecettes(filtreIngredients, filtreAppareils);
   });
   // Filtrage des recettes avec les ingrédients cliqués
-  filtrerRecettes(filtreIngredients);
-}
+  filtrerRecettes(filtreIngredients, filtreAppareils);
+};
 
-
+const addAppareilFilter = (appareil) => {
+  const searchedAppareil = appareil;
+  // Ajout de l'appareil cliqué au tableau filtreAppareils
+  filtreAppareils.push(searchedAppareil);
+  console.log(`Nouvelle recherche pour les appareils ${filtreAppareils}`);
+  // Création d'un bouton pour l'appareil cliqué
+  const button = document.createElement("button");
+  button.textContent = searchedAppareil;
+  button.classList.add("btn", "btn-primary", "rounded-pill", "me-3");
+  const deleteIcon = document.createElement("i");
+  deleteIcon.className = "fas fa-times";
+  button.appendChild(deleteIcon);
+  document.getElementById("filtres").appendChild(button);
+  // Ajout d'un gestionnaire d'événements au bouton pour le supprimer
+  button.addEventListener("click", () => {
+    // Suppression de l'appareil cliqué du tableau filtreAppareils
+    const index = filtreAppareils.indexOf(searchedAppareil);
+    if (index > -1) {
+      filtreAppareils.splice(index, 1);
+    }
+    console.log(`Nouvelle recherche pour les appareils ${filtreAppareils}`);
+    // Suppression du bouton du DOM
+    button.parentNode.removeChild(button);
+    // Filtrage des recettes avec les appareils cliqués
+    filtrerRecettes(filtreIngredients, filtreAppareils);
+  });
+  // Filtrage des recettes avec les appareils cliqués
+  filtrerRecettes(filtreIngredients, filtreAppareils);
+};
 
 // Fonction pour afficher la liste des ingrédients
 export const displayListeIngredients = (recipesArray) => {
@@ -66,7 +94,6 @@ export const displayListeIngredients = (recipesArray) => {
   });
 
   // Créer les éléments de la liste et les ajouter à l'élément de liste HTML
-  const listIngredients = document.getElementById("listIngredients");
   listIngredients.innerHTML = ""; // vider la liste avant de la remplir à nouveau
   uniqueIngredients.sort().forEach((ingredient) => {
     const li = document.createElement("li");
@@ -81,31 +108,22 @@ export const displayListeIngredients = (recipesArray) => {
 };
 
 export const displayListeAppareils = (recipes) => {
-  // Créer un tableau pour stocker les appareils uniques
   const uniqueAppareils = [];
-
-  // Boucler sur chaque recette pour trouver les appareils uniques
+  
   recipes.forEach((recipe) => {
-    // Vérifier si l'appareil est déjà présent dans le tableau des appareils uniques
     if (!uniqueAppareils.includes(recipe.appliance.toLowerCase())) {
-      // Si l'appareil n'est pas déjà présent, l'ajouter au tableau
       uniqueAppareils.push(recipe.appliance.toLowerCase());
     }
   });
 
-  // Créer un tableau des appareils uniques triés
-  const appareils = uniqueAppareils.sort();
-
-  // Vider la liste des appareils existants avant de la remplir à nouveau
   listAppareils.innerHTML = "";
 
-  // Créer les éléments de la liste et les ajouter à l'élément de liste HTML
-  appareils.forEach((appareil) => {
+  uniqueAppareils.sort().forEach((appareil) => {
     const li = document.createElement("li");
     li.textContent = appareil;
 
     li.addEventListener("click", () => {
-      addFilter(appareil); // Appeler la fonction addFilter en passant l'appareil cliqué
+      addAppareilFilter(appareil);
     });
 
     listAppareils.appendChild(li);
@@ -144,7 +162,6 @@ export const displayListeUstensiles = (recipesArray) => {
     listUstensiles.appendChild(li);
   });
 };
-
 
 const init = async () => {
   const recipes = await getData();

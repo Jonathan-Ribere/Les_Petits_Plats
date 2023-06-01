@@ -68,7 +68,7 @@ searchInput.addEventListener("input", () => {
 });
 
 // Fonction pour filtrer les recettes en fonction des filtres
-export const filtrerRecettes = (filtreIngredients) => {
+export const filtrerRecettes = (filtreIngredients, filtreAppareils) => {
   let recettesFiltrees = articles.filter((recette) => {
     // Vérifie si la recette contient tous les ingrédients filtrés
     if (
@@ -85,6 +85,16 @@ export const filtrerRecettes = (filtreIngredients) => {
     ) {
       return false;
     }
+
+    // Vérifie si la recette correspond à l'appareil filtré
+    if (
+      filtreAppareils.length > 0 &&
+      recette.appliance &&
+      !filtreAppareils.includes(recette.appliance.toLowerCase())
+    ) {
+      return false;
+    }
+
     return true;
   });
 
@@ -93,3 +103,5 @@ export const filtrerRecettes = (filtreIngredients) => {
   // Affiche les recettes filtrées
   sortAndDisplayArticles(recettesFiltrees);
 };
+
+
