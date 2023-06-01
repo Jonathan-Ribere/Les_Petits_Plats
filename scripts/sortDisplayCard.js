@@ -68,34 +68,28 @@ searchInput.addEventListener("input", () => {
 });
 
 // Fonction pour filtrer les recettes en fonction des filtres
-export const filtrerRecettes = (filtreIngredients, filtreAppareils) => {
+export const filtrerRecettes = (filtreIngredients, filtreAppareils, filtreUstensiles) => {
   let recettesFiltrees = articles.filter((recette) => {
     // Vérifie si la recette contient tous les ingrédients filtrés
-    if (
-      filtreIngredients.length > 0 &&
-      recette.ingredients &&
-      !filtreIngredients.every((ingredient) =>
-        recette.ingredients.some(
-          (recetteIngredient) =>
-            recetteIngredient.ingredient &&
-            recetteIngredient.ingredient.toLowerCase() ===
-              ingredient.toLowerCase()
-        )
+    const ingrFiltresPresent = !filtreIngredients.length || filtreIngredients.every((ingredient) =>
+      recette.ingredients.some(
+        (recetteIngredient) =>
+          recetteIngredient.ingredient &&
+          recetteIngredient.ingredient.toLowerCase() ===
+            ingredient.toLowerCase()
       )
-    ) {
-      return false;
-    }
-
+    );
+    
     // Vérifie si la recette correspond à l'appareil filtré
-    if (
-      filtreAppareils.length > 0 &&
-      recette.appliance &&
-      !filtreAppareils.includes(recette.appliance.toLowerCase())
-    ) {
-      return false;
-    }
+    const appareilFiltrePresent = !filtreAppareils.length || filtreAppareils.includes(recette.appliance.toLowerCase());
+    
+    // Vérifie si la recette contient tous les ustensiles filtrés
+    const ustensilesFiltresPresent = !filtreUstensiles.length || filtreUstensiles.every((ustensile) =>
+      recette.ustensils && recette.ustensils.includes(ustensile.toLowerCase())
+    );
 
-    return true;
+    // Retourne true si tous les filtres sont satisfaits, sinon false
+    return ingrFiltresPresent && appareilFiltrePresent && ustensilesFiltresPresent;
   });
 
   console.log(recettesFiltrees);
@@ -103,5 +97,8 @@ export const filtrerRecettes = (filtreIngredients, filtreAppareils) => {
   // Affiche les recettes filtrées
   sortAndDisplayArticles(recettesFiltrees);
 };
+
+
+
 
 

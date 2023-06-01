@@ -15,15 +15,14 @@ const listUstensiles = document.getElementById("listUstensiles");
 
 // Créez des variables pour stocker les valeurs actuelles des filtres
 let filtreIngredients = [];
-let filtreUstensiles = [];
 let filtreAppareils = [];
+let filtreUstensiles = [];
 
 const addFilter = (ingredient) => {
   const searchedLi = ingredient;
-  // Ajout de l'ingrédient cliqué au tableau filtreIngredients
   filtreIngredients.push(searchedLi);
   console.log(`Nouvelle recherche pour les ingrédients ${filtreIngredients}`);
-  // Création d'un bouton pour l'ingrédient cliqué
+  
   const button = document.createElement("button");
   button.textContent = searchedLi;
   button.classList.add("btn", "btn-primary", "rounded-pill", "me-3");
@@ -31,29 +30,25 @@ const addFilter = (ingredient) => {
   deleteIcon.className = "fas fa-times";
   button.appendChild(deleteIcon);
   document.getElementById("filtres").appendChild(button);
-  // Ajout d'un gestionnaire d'événements au bouton pour le supprimer
+  
   button.addEventListener("click", () => {
-    // Suppression de l'ingrédient cliqué du tableau filtreIngredients
     const index = filtreIngredients.indexOf(searchedLi);
     if (index > -1) {
       filtreIngredients.splice(index, 1);
     }
     console.log(`Nouvelle recherche pour les ingrédients ${filtreIngredients}`);
-    // Suppression du bouton du DOM
     button.parentNode.removeChild(button);
-    // Filtrage des recettes avec les ingrédients cliqués
-    filtrerRecettes(filtreIngredients, filtreAppareils);
+    filtrerRecettes(filtreIngredients, filtreAppareils, filtreUstensiles);
   });
-  // Filtrage des recettes avec les ingrédients cliqués
-  filtrerRecettes(filtreIngredients, filtreAppareils);
+  
+  filtrerRecettes(filtreIngredients, filtreAppareils, filtreUstensiles);
 };
 
 const addAppareilFilter = (appareil) => {
   const searchedAppareil = appareil;
-  // Ajout de l'appareil cliqué au tableau filtreAppareils
   filtreAppareils.push(searchedAppareil);
   console.log(`Nouvelle recherche pour les appareils ${filtreAppareils}`);
-  // Création d'un bouton pour l'appareil cliqué
+  
   const button = document.createElement("button");
   button.textContent = searchedAppareil;
   button.classList.add("btn", "btn-primary", "rounded-pill", "me-3");
@@ -61,40 +56,59 @@ const addAppareilFilter = (appareil) => {
   deleteIcon.className = "fas fa-times";
   button.appendChild(deleteIcon);
   document.getElementById("filtres").appendChild(button);
-  // Ajout d'un gestionnaire d'événements au bouton pour le supprimer
+  
   button.addEventListener("click", () => {
-    // Suppression de l'appareil cliqué du tableau filtreAppareils
     const index = filtreAppareils.indexOf(searchedAppareil);
     if (index > -1) {
       filtreAppareils.splice(index, 1);
     }
     console.log(`Nouvelle recherche pour les appareils ${filtreAppareils}`);
-    // Suppression du bouton du DOM
     button.parentNode.removeChild(button);
-    // Filtrage des recettes avec les appareils cliqués
-    filtrerRecettes(filtreIngredients, filtreAppareils);
+    filtrerRecettes(filtreIngredients, filtreAppareils, filtreUstensiles);
   });
-  // Filtrage des recettes avec les appareils cliqués
-  filtrerRecettes(filtreIngredients, filtreAppareils);
+  
+  filtrerRecettes(filtreIngredients, filtreAppareils, filtreUstensiles);
+};
+
+const addUstensilesFilter = (ustensile) => {
+  const searchedUstensile = ustensile;
+  filtreUstensiles.push(searchedUstensile);
+  console.log(`Nouvelle recherche pour les ustensiles ${filtreUstensiles}`);
+  
+  const button = document.createElement("button");
+  button.textContent = searchedUstensile;
+  button.classList.add("btn", "btn-primary", "rounded-pill", "me-3");
+  const deleteIcon = document.createElement("i");
+  deleteIcon.className = "fas fa-times";
+  button.appendChild(deleteIcon);
+  document.getElementById("filtres").appendChild(button);
+  
+  button.addEventListener("click", () => {
+    const index = filtreUstensiles.indexOf(searchedUstensile);
+    if (index > -1) {
+      filtreUstensiles.splice(index, 1);
+    }
+    console.log(`Nouvelle recherche pour les ustensiles ${filtreUstensiles}`);
+    button.parentNode.removeChild(button);
+    filtrerRecettes(filtreIngredients, filtreAppareils, filtreUstensiles);
+  });
+  
+  filtrerRecettes(filtreIngredients, filtreAppareils, filtreUstensiles);
 };
 
 // Fonction pour afficher la liste des ingrédients
 export const displayListeIngredients = (recipesArray) => {
-  // Créer un tableau pour stocker les ingrédients uniques
   const uniqueIngredients = [];
 
   recipesArray.forEach((recipe) => {
     recipe.ingredients.forEach((ingredient) => {
-      // Vérifier si l'ingrédient est déjà présent dans le tableau des ingrédients uniques
       if (!uniqueIngredients.includes(ingredient.ingredient.toLowerCase())) {
-        // Si l'ingrédient n'est pas déjà présent, l'ajouter au tableau
         uniqueIngredients.push(ingredient.ingredient.toLowerCase());
       }
     });
   });
 
-  // Créer les éléments de la liste et les ajouter à l'élément de liste HTML
-  listIngredients.innerHTML = ""; // vider la liste avant de la remplir à nouveau
+  listIngredients.innerHTML = "";
   uniqueIngredients.sort().forEach((ingredient) => {
     const li = document.createElement("li");
     li.textContent = ingredient;
@@ -109,7 +123,7 @@ export const displayListeIngredients = (recipesArray) => {
 
 export const displayListeAppareils = (recipes) => {
   const uniqueAppareils = [];
-  
+
   recipes.forEach((recipe) => {
     if (!uniqueAppareils.includes(recipe.appliance.toLowerCase())) {
       uniqueAppareils.push(recipe.appliance.toLowerCase());
@@ -131,37 +145,30 @@ export const displayListeAppareils = (recipes) => {
 };
 
 export const displayListeUstensiles = (recipesArray) => {
-  // Créer un tableau pour stocker les ustensiles uniques
   const uniqueUstensiles = [];
 
   recipesArray.forEach((recipe) => {
     recipe.ustensils.forEach((ustensile) => {
-      // Vérifier si l'ustensile est déjà présent dans le tableau des ustensiles uniques
       if (!uniqueUstensiles.includes(ustensile.toLowerCase())) {
-        // Si l'ustensile n'est pas déjà présent, l'ajouter au tableau
         uniqueUstensiles.push(ustensile.toLowerCase());
       }
     });
   });
 
-  // Trier le tableau des ustensiles uniques
-  const ustensiles = uniqueUstensiles.sort();
-
-  // Vider la liste des ustensiles existants avant de la remplir à nouveau
   listUstensiles.innerHTML = "";
 
-  // Créer les éléments de la liste et les ajouter à l'élément de liste HTML
-  ustensiles.forEach((ustensile) => {
+  uniqueUstensiles.sort().forEach((ustensile) => {
     const li = document.createElement("li");
     li.textContent = ustensile;
 
     li.addEventListener("click", () => {
-      addFilter(ustensile); // Appeler la fonction addFilter en passant l'ustensile cliqué
+      addUstensilesFilter(ustensile);
     });
 
     listUstensiles.appendChild(li);
   });
 };
+
 
 const init = async () => {
   const recipes = await getData();
