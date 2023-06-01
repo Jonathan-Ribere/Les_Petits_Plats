@@ -1,12 +1,12 @@
 import { getData } from "./api.js";
 import { creatCard } from "./displayCard.js";
-import {displayListeIngredients, displayListeAppareils, displayListeUstensiles } from "./displayListe.js"
+import {
+  displayListeIngredients,
+  displayListeAppareils,
+  displayListeUstensiles,
+} from "./displayListe.js";
 
-// Créez des variables pour stocker les valeurs actuelles des filtres
 
-let filtreIngredients = [];
-let filtreUstensiles = [];
-let filtreAppareils = [];
 
 // Récupération de l'élément input
 const searchInput = document.querySelector("#search-input");
@@ -32,8 +32,8 @@ export const sortAndDisplayArticles = (articles) => {
   if (searchValue.length >= 3) {
     // Filtrage des articles selon le critère de recherche
     sortedArticles = articles.filter((article) => {
-      const ingredients = article.ingredients.map((ingredient) =>
-        ingredient.ingredient.toLowerCase()
+      const ingredients = article.ingredients.map(
+        (ingredient) => ingredient.ingredient.toLowerCase()
       );
       return (
         ingredients.includes(searchValue) ||
@@ -56,7 +56,8 @@ export const sortAndDisplayArticles = (articles) => {
   sortedArticles.forEach((article) => {
     creatCard(article, section);
   });
-  displayListeIngredients(sortedArticles)
+
+  displayListeIngredients(sortedArticles);
   displayListeAppareils(sortedArticles);
   displayListeUstensiles(sortedArticles);
 };
@@ -66,19 +67,19 @@ searchInput.addEventListener("input", () => {
   sortAndDisplayArticles(articles);
 });
 
-
-
 // Fonction pour filtrer les recettes en fonction des filtres
- export function filtrerRecettes(filtreIngredients) {
+export const filtrerRecettes = (filtreIngredients) => {
   let recettesFiltrees = articles.filter((recette) => {
     // Vérifie si la recette contient tous les ingrédients filtrés
     if (
       filtreIngredients.length > 0 &&
+      recette.ingredients &&
       !filtreIngredients.every((ingredient) =>
         recette.ingredients.some(
           (recetteIngredient) =>
+            recetteIngredient.ingredient &&
             recetteIngredient.ingredient.toLowerCase() ===
-            ingredient.toLowerCase()
+              ingredient.toLowerCase()
         )
       )
     ) {
@@ -87,6 +88,8 @@ searchInput.addEventListener("input", () => {
     return true;
   });
 
+  console.log(recettesFiltrees);
+
   // Affiche les recettes filtrées
   sortAndDisplayArticles(recettesFiltrees);
-}
+};

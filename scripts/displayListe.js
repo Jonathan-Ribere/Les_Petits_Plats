@@ -49,6 +49,8 @@ const addFilter = (ingredient) => {
 }
 
 
+
+// Fonction pour afficher la liste des ingrédients
 export const displayListeIngredients = (recipesArray) => {
   // Créer un tableau pour stocker les ingrédients uniques
   const uniqueIngredients = [];
@@ -64,13 +66,15 @@ export const displayListeIngredients = (recipesArray) => {
   });
 
   // Créer les éléments de la liste et les ajouter à l'élément de liste HTML
+  const listIngredients = document.getElementById("listIngredients");
   listIngredients.innerHTML = ""; // vider la liste avant de la remplir à nouveau
   uniqueIngredients.sort().forEach((ingredient) => {
     const li = document.createElement("li");
     li.textContent = ingredient;
 
-    li.addEventListener("click",() => {addFilter()});
-
+    li.addEventListener("click", () => {
+      addFilter(ingredient);
+    });
 
     listIngredients.appendChild(li);
   });
@@ -133,11 +137,14 @@ export const displayListeUstensiles = (recipesArray) => {
     const li = document.createElement("li");
     li.textContent = ustensile;
 
-    addClickHandlerToListItems([li]); // Passer l'élément li dans un tableau
+    li.addEventListener("click", () => {
+      addFilter(ustensile); // Appeler la fonction addFilter en passant l'ustensile cliqué
+    });
 
     listUstensiles.appendChild(li);
   });
 };
+
 
 const init = async () => {
   const recipes = await getData();
