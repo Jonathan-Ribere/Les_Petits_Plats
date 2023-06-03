@@ -2,15 +2,12 @@ import { getData } from "./api.js";
 import { filtrerRecettes } from "./sortDisplayCard.js";
 
 // Récupération de l'élément bouton et de la liste Ingredients
-const buttonIngredients = document.getElementById("buttonIngredients");
 const listIngredients = document.getElementById("listIngredients");
 
 // Récupération de l'élément bouton et de la liste Appareils
-const buttonAppareils = document.getElementById("buttonAppareils");
 const listAppareils = document.getElementById("listAppareils");
 
 // Récupération de l'élément bouton et de la liste Ustensiles
-const buttonUstensiles = document.getElementById("buttonUstensiles");
 const listUstensiles = document.getElementById("listUstensiles");
 
 // Créez des variables pour stocker les valeurs actuelles des filtres
@@ -22,15 +19,15 @@ const addFilter = (ingredient) => {
   const searchedLi = ingredient;
   filtreIngredients.push(searchedLi);
   console.log(`Nouvelle recherche pour les ingrédients ${filtreIngredients}`);
-  
+
   const button = document.createElement("button");
   button.textContent = searchedLi;
-  button.classList.add("btn", "btn-primary", "rounded-pill", "me-3");
+  button.classList.add("btn", "btn-primary", "rounded-sm", "me-3");
   const deleteIcon = document.createElement("i");
-  deleteIcon.className = "fas fa-times";
+  deleteIcon.className = "fa-regular fa-circle-xmark";
   button.appendChild(deleteIcon);
   document.getElementById("filtres").appendChild(button);
-  
+
   button.addEventListener("click", () => {
     const index = filtreIngredients.indexOf(searchedLi);
     if (index > -1) {
@@ -40,7 +37,7 @@ const addFilter = (ingredient) => {
     button.parentNode.removeChild(button);
     filtrerRecettes(filtreIngredients, filtreAppareils, filtreUstensiles);
   });
-  
+
   filtrerRecettes(filtreIngredients, filtreAppareils, filtreUstensiles);
 };
 
@@ -48,15 +45,15 @@ const addAppareilFilter = (appareil) => {
   const searchedAppareil = appareil;
   filtreAppareils.push(searchedAppareil);
   console.log(`Nouvelle recherche pour les appareils ${filtreAppareils}`);
-  
+
   const button = document.createElement("button");
   button.textContent = searchedAppareil;
-  button.classList.add("btn", "btn-primary", "rounded-pill", "me-3");
+  button.classList.add("btn", "bg-success", "text-white", "rounded-sm", "me-3");
   const deleteIcon = document.createElement("i");
-  deleteIcon.className = "fas fa-times";
+  deleteIcon.className = "fa-regular fa-circle-xmark";
   button.appendChild(deleteIcon);
   document.getElementById("filtres").appendChild(button);
-  
+
   button.addEventListener("click", () => {
     const index = filtreAppareils.indexOf(searchedAppareil);
     if (index > -1) {
@@ -66,7 +63,7 @@ const addAppareilFilter = (appareil) => {
     button.parentNode.removeChild(button);
     filtrerRecettes(filtreIngredients, filtreAppareils, filtreUstensiles);
   });
-  
+
   filtrerRecettes(filtreIngredients, filtreAppareils, filtreUstensiles);
 };
 
@@ -74,15 +71,15 @@ const addUstensilesFilter = (ustensile) => {
   const searchedUstensile = ustensile;
   filtreUstensiles.push(searchedUstensile);
   console.log(`Nouvelle recherche pour les ustensiles ${filtreUstensiles}`);
-  
+
   const button = document.createElement("button");
   button.textContent = searchedUstensile;
-  button.classList.add("btn", "btn-primary", "rounded-pill", "me-3");
+  button.classList.add("btn", "bg-danger", "rounded-sm", "text-white", "me-3");
   const deleteIcon = document.createElement("i");
-  deleteIcon.className = "fas fa-times";
+  deleteIcon.className = "fa-regular fa-circle-xmark";
   button.appendChild(deleteIcon);
   document.getElementById("filtres").appendChild(button);
-  
+
   button.addEventListener("click", () => {
     const index = filtreUstensiles.indexOf(searchedUstensile);
     if (index > -1) {
@@ -92,7 +89,7 @@ const addUstensilesFilter = (ustensile) => {
     button.parentNode.removeChild(button);
     filtrerRecettes(filtreIngredients, filtreAppareils, filtreUstensiles);
   });
-  
+
   filtrerRecettes(filtreIngredients, filtreAppareils, filtreUstensiles);
 };
 
@@ -168,7 +165,6 @@ export const displayListeUstensiles = (recipesArray) => {
     listUstensiles.appendChild(li);
   });
 };
-
 
 const init = async () => {
   const recipes = await getData();
