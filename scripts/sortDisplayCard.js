@@ -31,16 +31,20 @@ export const sortAndDisplayArticles = (articles) => {
   // Si la valeur de recherche est d'au moins 3 caractères
   if (searchValue.length >= 3) {
     // Filtrage des articles selon le critère de recherche
-    sortedArticles = articles.filter((article) => {
-      const ingredients = article.ingredients.map(
-        (ingredient) => ingredient.ingredient.toLowerCase()
-      );
-      return (
+    sortedArticles = [];
+    for (let i = 0; i < articles.length; i++) {
+      const ingredients = [];
+      for (let j = 0; j < articles[i].ingredients.length; j++) {
+        ingredients.push(articles[i].ingredients[j].ingredient.toLowerCase());
+      }
+      if (
         ingredients.includes(searchValue) ||
-        article.name.toLowerCase().includes(searchValue) ||
-        article.description.toLowerCase().includes(searchValue)
-      );
-    });
+        articles[i].name.toLowerCase().includes(searchValue) ||
+        articles[i].description.toLowerCase().includes(searchValue)
+      ) {
+        sortedArticles.push(articles[i]);
+      }
+    }
   } else {
     // Si la valeur de recherche est inférieure à 3 caractères, on affiche tous les articles
     sortedArticles = articles;
@@ -53,14 +57,15 @@ export const sortAndDisplayArticles = (articles) => {
   section.innerHTML = "";
 
   // Création des cartes d'articles pour les articles triés et affichage de la liste d'ingrédients
-  sortedArticles.forEach((article) => {
-    creatCard(article, section);
-  });
+  for (let i = 0; i < sortedArticles.length; i++) {
+    creatCard(sortedArticles[i], section);
+  }
 
   displayListeIngredients(sortedArticles);
   displayListeAppareils(sortedArticles);
   displayListeUstensiles(sortedArticles);
 };
+
 
 // Ajout d'un écouteur d'événement sur l'élément input pour mettre à jour l'affichage à chaque saisie
 searchInput.addEventListener("input", () => {

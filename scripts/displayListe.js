@@ -4,7 +4,6 @@ import { filtrerRecettes } from "./sortDisplayCard.js";
 // Récupération de l'élément bouton et de la liste Ingredients
 const listIngredients = document.getElementById("listIngredients");
 
-
 // Récupération de l'élément bouton et de la liste Appareils
 const listAppareils = document.getElementById("listAppareils");
 
