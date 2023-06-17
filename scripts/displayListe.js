@@ -4,6 +4,7 @@ import { filtrerRecettes } from "./sortDisplayCard.js";
 // Récupération de l'élément bouton et de la liste Ingredients
 const listIngredients = document.getElementById("listIngredients");
 
+
 // Récupération de l'élément bouton et de la liste Appareils
 const listAppareils = document.getElementById("listAppareils");
 
@@ -95,6 +96,9 @@ const addUstensilesFilter = (ustensile) => {
 
 // Fonction pour afficher la liste des ingrédients
 export const displayListeIngredients = (recipesArray) => {
+  const parentElement = document.querySelector('#listIngredients');
+  parentElement.innerHTML = '';
+
   const uniqueIngredients = [];
 
   recipesArray.forEach((recipe) => {
@@ -105,20 +109,42 @@ export const displayListeIngredients = (recipesArray) => {
     });
   });
 
-  listIngredients.innerHTML = "";
-  uniqueIngredients.sort().forEach((ingredient) => {
-    const li = document.createElement("li");
-    li.textContent = ingredient;
+  const numColumns = 3;
+  const numRows = Math.ceil(uniqueIngredients.length / numColumns);
 
-    li.addEventListener("click", () => {
-      addFilter(ingredient);
-    });
+  for (let i = 0; i < numRows; i++) {
+    const row = document.createElement('div');
+    row.className = 'row';
 
-    listIngredients.appendChild(li);
-  });
+    for (let j = i * numColumns; j < (i + 1) * numColumns; j++) {
+      if (j >= uniqueIngredients.length) {
+        break;
+      }
+
+      const col = document.createElement('div');
+      col.className = 'col';
+      col.textContent = uniqueIngredients[j];
+
+      col.addEventListener('click', () => {
+        addFilter(uniqueIngredients[j]);
+      });
+
+      row.appendChild(col);
+    }
+
+    parentElement.appendChild(row);
+  }
 };
 
+
+
+
+
+
 export const displayListeAppareils = (recipes) => {
+  const parentElement = document.querySelector('#listAppareils');
+  parentElement.innerHTML = '';
+
   const uniqueAppareils = [];
 
   recipes.forEach((recipe) => {
@@ -127,21 +153,38 @@ export const displayListeAppareils = (recipes) => {
     }
   });
 
-  listAppareils.innerHTML = "";
+  const numColumns = 3;
+  const numRows = Math.ceil(uniqueAppareils.length / numColumns);
 
-  uniqueAppareils.sort().forEach((appareil) => {
-    const li = document.createElement("li");
-    li.textContent = appareil;
+  for (let i = 0; i < numRows; i++) {
+    const row = document.createElement('div');
+    row.className = 'row';
 
-    li.addEventListener("click", () => {
-      addAppareilFilter(appareil);
-    });
+    for (let j = i * numColumns; j < (i + 1) * numColumns; j++) {
+      if (j >= uniqueAppareils.length) {
+        break;
+      }
 
-    listAppareils.appendChild(li);
-  });
+      const col = document.createElement('div');
+      col.className = 'col';
+      col.textContent = uniqueAppareils[j];
+
+      col.addEventListener('click', () => {
+        addAppareilFilter(uniqueAppareils[j]);
+      });
+
+      row.appendChild(col);
+    }
+
+    parentElement.appendChild(row);
+  }
 };
 
+
 export const displayListeUstensiles = (recipesArray) => {
+  const parentElement = document.querySelector('#listUstensiles');
+  parentElement.innerHTML = '';
+
   const uniqueUstensiles = [];
 
   recipesArray.forEach((recipe) => {
@@ -152,19 +195,39 @@ export const displayListeUstensiles = (recipesArray) => {
     });
   });
 
-  listUstensiles.innerHTML = "";
+  const numColumns = 3;
+  const numRows = Math.ceil(uniqueUstensiles.length / numColumns);
+  const lastRowNumColumns = uniqueUstensiles.length % numColumns;
 
-  uniqueUstensiles.sort().forEach((ustensile) => {
-    const li = document.createElement("li");
-    li.textContent = ustensile;
+  for (let i = 0; i < numRows; i++) {
+    const row = document.createElement('div');
+    row.className = 'row';
 
-    li.addEventListener("click", () => {
-      addUstensilesFilter(ustensile);
-    });
+    // Si c'est la dernière ligne et qu'il y a moins de 3 éléments, ajouter une classe pour aligner à gauche et au centre
+    if (i === numRows - 1 && lastRowNumColumns > 0) {
+      row.classList.add('justify-content-start', 'justify-content-md-center');
+    }
 
-    listUstensiles.appendChild(li);
-  });
+    for (let j = i * numColumns; j < (i + 1) * numColumns; j++) {
+      if (j >= uniqueUstensiles.length) {
+        break;
+      }
+
+      const col = document.createElement('div');
+      col.className = 'col';
+      col.textContent = uniqueUstensiles[j];
+
+      col.addEventListener('click', () => {
+        addUstensilesFilter(uniqueUstensiles[j]);
+      });
+
+      row.appendChild(col);
+    }
+
+    parentElement.appendChild(row);
+  }
 };
+
 
 const init = async () => {
   const recipes = await getData();
