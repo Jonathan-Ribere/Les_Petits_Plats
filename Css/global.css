@@ -131,20 +131,20 @@ ul li {
   font-weight: 300 !important;
 }
 
-.list-container{
+.list-container {
   display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
 }
 
- /* Appliquez une position relative aux éléments li */
- .list-container li {
+/* Appliquez une position relative aux éléments li */
+.list-container li {
   position: relative;
 }
 
-   /* Déplacez les éléments après le 10e élément vers la première colonne */
-   .list-container li:nth-child(n+11) {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+/* Déplacez les éléments après le 10e élément vers la première colonne */
+.list-container li:nth-child(n+11) {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
