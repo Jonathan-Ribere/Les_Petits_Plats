@@ -18,8 +18,6 @@ let filtreUstensiles = [];
 const addFilter = (ingredient) => {
   const searchedLi = ingredient;
   filtreIngredients.push(searchedLi);
-  console.log(`Nouvelle recherche pour les ingrédients ${filtreIngredients}`);
-
   const button = document.createElement("button");
   button.textContent = searchedLi;
   button.classList.add("btn", "btn-primary", "rounded-sm", "me-3");
@@ -33,7 +31,6 @@ const addFilter = (ingredient) => {
     if (index > -1) {
       filtreIngredients.splice(index, 1);
     }
-    console.log(`Nouvelle recherche pour les ingrédients ${filtreIngredients}`);
     button.parentNode.removeChild(button);
     filtrerRecettes(filtreIngredients, filtreAppareils, filtreUstensiles);
   });
@@ -44,8 +41,6 @@ const addFilter = (ingredient) => {
 const addAppareilFilter = (appareil) => {
   const searchedAppareil = appareil;
   filtreAppareils.push(searchedAppareil);
-  console.log(`Nouvelle recherche pour les appareils ${filtreAppareils}`);
-
   const button = document.createElement("button");
   button.textContent = searchedAppareil;
   button.classList.add("btn", "bg-success", "text-white", "rounded-sm", "me-3");
@@ -59,7 +54,6 @@ const addAppareilFilter = (appareil) => {
     if (index > -1) {
       filtreAppareils.splice(index, 1);
     }
-    console.log(`Nouvelle recherche pour les appareils ${filtreAppareils}`);
     button.parentNode.removeChild(button);
     filtrerRecettes(filtreIngredients, filtreAppareils, filtreUstensiles);
   });
@@ -70,8 +64,6 @@ const addAppareilFilter = (appareil) => {
 const addUstensilesFilter = (ustensile) => {
   const searchedUstensile = ustensile;
   filtreUstensiles.push(searchedUstensile);
-  console.log(`Nouvelle recherche pour les ustensiles ${filtreUstensiles}`);
-
   const button = document.createElement("button");
   button.textContent = searchedUstensile;
   button.classList.add("btn", "bg-danger", "rounded-sm", "text-white", "me-3");
@@ -85,7 +77,6 @@ const addUstensilesFilter = (ustensile) => {
     if (index > -1) {
       filtreUstensiles.splice(index, 1);
     }
-    console.log(`Nouvelle recherche pour les ustensiles ${filtreUstensiles}`);
     button.parentNode.removeChild(button);
     filtrerRecettes(filtreIngredients, filtreAppareils, filtreUstensiles);
   });

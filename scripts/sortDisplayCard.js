@@ -104,8 +104,6 @@ export const filtrerRecettes = (
     );
   });
 
-  console.log(recettesFiltrees);
-
   // Affiche les recettes filtrées
   sortAndDisplayArticles(recettesFiltrees);
 };
