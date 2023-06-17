@@ -6,8 +6,6 @@ import {
   displayListeUstensiles,
 } from "./displayListe.js";
 
-
-
 // Récupération de l'élément input
 const searchInput = document.querySelector("#search-input");
 
@@ -32,8 +30,8 @@ export const sortAndDisplayArticles = (articles) => {
   if (searchValue.length >= 3) {
     // Filtrage des articles selon le critère de recherche
     sortedArticles = articles.filter((article) => {
-      const ingredients = article.ingredients.map(
-        (ingredient) => ingredient.ingredient.toLowerCase()
+      const ingredients = article.ingredients.map((ingredient) =>
+        ingredient.ingredient.toLowerCase()
       );
       return (
         ingredients.includes(searchValue) ||
@@ -68,28 +66,42 @@ searchInput.addEventListener("input", () => {
 });
 
 // Fonction pour filtrer les recettes en fonction des filtres
-export const filtrerRecettes = (filtreIngredients, filtreAppareils, filtreUstensiles) => {
+export const filtrerRecettes = (
+  filtreIngredients,
+  filtreAppareils,
+  filtreUstensiles
+) => {
   let recettesFiltrees = articles.filter((recette) => {
     // Vérifie si la recette contient tous les ingrédients filtrés
-    const ingrFiltresPresent = !filtreIngredients.length || filtreIngredients.every((ingredient) =>
-      recette.ingredients.some(
-        (recetteIngredient) =>
-          recetteIngredient.ingredient &&
-          recetteIngredient.ingredient.toLowerCase() ===
+    const ingrFiltresPresent =
+      !filtreIngredients.length ||
+      filtreIngredients.every((ingredient) =>
+        recette.ingredients.some(
+          (recetteIngredient) =>
+            recetteIngredient.ingredient &&
+            recetteIngredient.ingredient.toLowerCase() ===
             ingredient.toLowerCase()
-      )
-    );
-    
+        )
+      );
+
     // Vérifie si la recette correspond à l'appareil filtré
-    const appareilFiltrePresent = !filtreAppareils.length || filtreAppareils.includes(recette.appliance.toLowerCase());
-    
+    const appareilFiltrePresent =
+      !filtreAppareils.length ||
+      filtreAppareils.includes(recette.appliance.toLowerCase());
+
     // Vérifie si la recette contient tous les ustensiles filtrés
-    const ustensilesFiltresPresent = !filtreUstensiles.length || filtreUstensiles.every((ustensile) =>
-      recette.ustensils && recette.ustensils.includes(ustensile.toLowerCase())
-    );
+    const ustensilesFiltresPresent =
+      !filtreUstensiles.length ||
+      filtreUstensiles.every(
+        (ustensile) =>
+          recette.ustensils &&
+          recette.ustensils.includes(ustensile.toLowerCase())
+      );
 
     // Retourne true si tous les filtres sont satisfaits, sinon false
-    return ingrFiltresPresent && appareilFiltrePresent && ustensilesFiltresPresent;
+    return (
+      ingrFiltresPresent && appareilFiltrePresent && ustensilesFiltresPresent
+    );
   });
 
   console.log(recettesFiltrees);
@@ -97,8 +109,3 @@ export const filtrerRecettes = (filtreIngredients, filtreAppareils, filtreUstens
   // Affiche les recettes filtrées
   sortAndDisplayArticles(recettesFiltrees);
 };
-
-
-
-
-

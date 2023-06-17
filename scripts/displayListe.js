@@ -4,7 +4,6 @@ import { filtrerRecettes } from "./sortDisplayCard.js";
 // Récupération de l'élément bouton et de la liste Ingredients
 const listIngredients = document.getElementById("listIngredients");
 
-
 // Récupération de l'élément bouton et de la liste Appareils
 const listAppareils = document.getElementById("listAppareils");
 
@@ -96,8 +95,8 @@ const addUstensilesFilter = (ustensile) => {
 
 // Fonction pour afficher la liste des ingrédients
 export const displayListeIngredients = (recipesArray) => {
-  const parentElement = document.querySelector('#listIngredients');
-  parentElement.innerHTML = '';
+  const parentElement = document.querySelector("#listIngredients");
+  parentElement.innerHTML = "";
 
   const uniqueIngredients = [];
 
@@ -113,19 +112,19 @@ export const displayListeIngredients = (recipesArray) => {
   const numRows = Math.ceil(uniqueIngredients.length / numColumns);
 
   for (let i = 0; i < numRows; i++) {
-    const row = document.createElement('div');
-    row.className = 'row';
+    const row = document.createElement("div");
+    row.className = "row";
 
     for (let j = i * numColumns; j < (i + 1) * numColumns; j++) {
       if (j >= uniqueIngredients.length) {
         break;
       }
 
-      const col = document.createElement('div');
-      col.className = 'col';
+      const col = document.createElement("div");
+      col.className = "col";
       col.textContent = uniqueIngredients[j];
 
-      col.addEventListener('click', () => {
+      col.addEventListener("click", () => {
         addFilter(uniqueIngredients[j]);
       });
 
@@ -136,14 +135,9 @@ export const displayListeIngredients = (recipesArray) => {
   }
 };
 
-
-
-
-
-
 export const displayListeAppareils = (recipes) => {
-  const parentElement = document.querySelector('#listAppareils');
-  parentElement.innerHTML = '';
+  const parentElement = document.querySelector("#listAppareils");
+  parentElement.innerHTML = "";
 
   const uniqueAppareils = [];
 
@@ -157,19 +151,19 @@ export const displayListeAppareils = (recipes) => {
   const numRows = Math.ceil(uniqueAppareils.length / numColumns);
 
   for (let i = 0; i < numRows; i++) {
-    const row = document.createElement('div');
-    row.className = 'row';
+    const row = document.createElement("div");
+    row.className = "row";
 
     for (let j = i * numColumns; j < (i + 1) * numColumns; j++) {
       if (j >= uniqueAppareils.length) {
         break;
       }
 
-      const col = document.createElement('div');
-      col.className = 'col';
+      const col = document.createElement("div");
+      col.className = "col";
       col.textContent = uniqueAppareils[j];
 
-      col.addEventListener('click', () => {
+      col.addEventListener("click", () => {
         addAppareilFilter(uniqueAppareils[j]);
       });
 
@@ -180,10 +174,9 @@ export const displayListeAppareils = (recipes) => {
   }
 };
 
-
 export const displayListeUstensiles = (recipesArray) => {
-  const parentElement = document.querySelector('#listUstensiles');
-  parentElement.innerHTML = '';
+  const parentElement = document.querySelector("#listUstensiles");
+  parentElement.innerHTML = "";
 
   const uniqueUstensiles = [];
 
@@ -200,12 +193,12 @@ export const displayListeUstensiles = (recipesArray) => {
   const lastRowNumColumns = uniqueUstensiles.length % numColumns;
 
   for (let i = 0; i < numRows; i++) {
-    const row = document.createElement('div');
-    row.className = 'row';
+    const row = document.createElement("div");
+    row.className = "row";
 
     // Si c'est la dernière ligne et qu'il y a moins de 3 éléments, ajouter une classe pour aligner à gauche et au centre
     if (i === numRows - 1 && lastRowNumColumns > 0) {
-      row.classList.add('justify-content-start', 'justify-content-md-center');
+      row.classList.add("justify-content-start", "justify-content-md-center");
     }
 
     for (let j = i * numColumns; j < (i + 1) * numColumns; j++) {
@@ -213,11 +206,11 @@ export const displayListeUstensiles = (recipesArray) => {
         break;
       }
 
-      const col = document.createElement('div');
-      col.className = 'col';
+      const col = document.createElement("div");
+      col.className = "col";
       col.textContent = uniqueUstensiles[j];
 
-      col.addEventListener('click', () => {
+      col.addEventListener("click", () => {
         addUstensilesFilter(uniqueUstensiles[j]);
       });
 
@@ -227,7 +220,6 @@ export const displayListeUstensiles = (recipesArray) => {
     parentElement.appendChild(row);
   }
 };
-
 
 const init = async () => {
   const recipes = await getData();

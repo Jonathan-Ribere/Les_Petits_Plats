@@ -68,7 +68,7 @@ export const creatCard = (recipe) => {
       ul.appendChild(li);
     });
   }
-  
+
   const prepa = document.createElement("div");
   prepa.classList.add("prepa");
   mainCard.appendChild(prepa);
