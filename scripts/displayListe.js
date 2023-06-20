@@ -25,17 +25,25 @@ const addFilter = (ingredient) => {
   deleteIcon.className = "fa-regular fa-circle-xmark";
   button.appendChild(deleteIcon);
   document.getElementById("filtres").appendChild(button);
-
   button.addEventListener("click", () => {
+    // Ajoute un écouteur d'événement "click" au bouton
     const index = filtreIngredients.indexOf(searchedLi);
+    // Recherche l'index de l'élément "searchedLi" dans le tableau "filtreIngredients"
     if (index > -1) {
+      // Vérifie si l'index de l'élément est trouvé 
       filtreIngredients.splice(index, 1);
+      // Supprime l'élément à l'index spécifié du tableau "filtreIngredients"
     }
+
     button.parentNode.removeChild(button);
+    // Supprime le bouton lui-même de son parent
     filtrerRecettes(filtreIngredients, filtreAppareils, filtreUstensiles);
+    // Appelle la fonction "filtrerRecettes" en lui passant les tableaux "filtreIngredients", "filtreAppareils" et "filtreUstensiles" en tant qu'arguments
   });
 
   filtrerRecettes(filtreIngredients, filtreAppareils, filtreUstensiles);
+  // Appelle la fonction "filtrerRecettes" en lui passant les tableaux "filtreIngredients", "filtreAppareils" et "filtreUstensiles" en tant qu'arguments
+
 };
 
 const addAppareilFilter = (appareil) => {
@@ -88,8 +96,11 @@ const addUstensilesFilter = (ustensile) => {
 export const displayListeIngredients = (recipesArray) => {
   const parentElement = document.querySelector("#listIngredients");
   parentElement.innerHTML = "";
+  // Sélectionne l'élément parent dans le document HTML où la liste d'ingrédients sera affichée
+  // Ensuite, vide le contenu de cet élément
 
   const uniqueIngredients = [];
+  // Déclare un tableau vide pour stocker les ingrédients uniques
 
   recipesArray.forEach((recipe) => {
     recipe.ingredients.forEach((ingredient) => {
@@ -98,31 +109,45 @@ export const displayListeIngredients = (recipesArray) => {
       }
     });
   });
+  // Parcourt chaque recette dans le tableau "recipesArray"
+  // Pour chaque recette, parcourt les ingrédients de cette recette
+  // Vérifie si l'ingrédient n'est pas déjà présent dans le tableau des ingrédients uniques
+  // Si ce n'est pas le cas, ajoute l'ingrédient (en minuscules) au tableau des ingrédients uniques
 
   const numColumns = 3;
   const numRows = Math.ceil(uniqueIngredients.length / numColumns);
+  // Définit le nombre de colonnes (3 dans cet exemple) et le nombre de lignes nécessaires en fonction de la longueur du tableau des ingrédients uniques
 
   for (let i = 0; i < numRows; i++) {
     const row = document.createElement("div");
     row.className = "row";
+    // Crée un élément div pour chaque ligne et lui attribue la classe "row"
 
     for (let j = i * numColumns; j < (i + 1) * numColumns; j++) {
       if (j >= uniqueIngredients.length) {
         break;
       }
+      // Boucle à travers chaque colonne dans la ligne
+      // Si l'index dépasse la longueur du tableau des ingrédients uniques, sort de la boucle
 
       const col = document.createElement("div");
       col.className = "col";
       col.textContent = uniqueIngredients[j];
+      // Crée un élément div pour chaque colonne et lui attribue la classe "col"
+      // Définit le texte de chaque colonne avec un ingrédient unique à l'index j du tableau des ingrédients uniques
 
       col.addEventListener("click", () => {
         addFilter(uniqueIngredients[j]);
       });
+      // Ajoute un écouteur d'événement "click" à chaque colonne
+      // Lorsque la colonne est cliquée, la fonction "addFilter" est appelée avec l'ingrédient unique correspondant à l'index j
 
       row.appendChild(col);
+      // Ajoute la colonne à la ligne
     }
 
     parentElement.appendChild(row);
+    // Ajoute la ligne à l'élément parent sélectionné précédemment
   }
 };
 

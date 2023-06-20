@@ -49,25 +49,42 @@ export const creatCard = (recipe) => {
   ul.classList.add("ulList");
   divUl.appendChild(ul);
 
-  // Vérifier si la propriété "ingredients" existe avant d'utiliser la méthode "forEach"
   if (recipe.ingredients && recipe.ingredients.length > 0) {
+    // Vérifie si la propriété `ingredients` existe et si sa longueur est supérieure à zéro
+
     recipe.ingredients.forEach((ingredient) => {
+      // Itère sur chaque élément de la liste `ingredients` de la recette
+
       const li = document.createElement("li");
       li.classList.add("liCard");
+      // Crée un nouvel élément <li> et lui ajoute la classe "liCard"
 
       let ingredientString = ingredient.ingredient;
+      // Initialise une variable `ingredientString` avec la valeur de la propriété `ingredient` de l'élément `ingredient` actuel
+
       if (ingredient.quantity) {
+        // Vérifie si la propriété `quantity` de l'élément `ingredient` existe
+
         ingredientString += `: <span class="ingredient-quantity">${ingredient.quantity}`;
+        // Ajoute la quantité à la variable `ingredientString` avec une chaîne de caractères formatée
+
         if (ingredient.unit) {
           ingredientString += ` ${ingredient.unit}`;
+          // Ajoute l'unité à la variable `ingredientString` si elle existe
         }
+
         ingredientString += `</span>`;
+        // Ferme la balise <span> ouverte précédemment avec la variable `ingredientString`
       }
 
       li.innerHTML = ingredientString;
+      // Affecte la valeur de `ingredientString` en tant que contenu HTML de l'élément <li>
+
       ul.appendChild(li);
+      // Ajoute l'élément <li> à l'élément <ul> existant dans le code précédent
     });
   }
+
 
   const prepa = document.createElement("div");
   prepa.classList.add("prepa");
