@@ -130,3 +130,7 @@ ul li {
 .ingredient-quantity {
   font-weight: 300 !important;
 }
+
+#listIngredients,#listAppareils, #listUstensiles {
+  padding: 10px;
+}

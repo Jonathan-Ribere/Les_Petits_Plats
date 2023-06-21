@@ -1,15 +1,6 @@
 import { getData } from "./api.js";
 import { filtrerRecettes } from "./sortDisplayCard.js";
 
-// Récupération de l'élément bouton et de la liste Ingredients
-const listIngredients = document.getElementById("listIngredients");
-
-// Récupération de l'élément bouton et de la liste Appareils
-const listAppareils = document.getElementById("listAppareils");
-
-// Récupération de l'élément bouton et de la liste Ustensiles
-const listUstensiles = document.getElementById("listUstensiles");
-
 // Créez des variables pour stocker les valeurs actuelles des filtres
 let filtreIngredients = [];
 let filtreAppareils = [];
@@ -115,8 +106,10 @@ export const displayListeIngredients = (recipesArray) => {
   // Si ce n'est pas le cas, ajoute l'ingrédient (en minuscules) au tableau des ingrédients uniques
 
   const numColumns = 3;
+
+  // Math.ceil() arrondit un nombre à l'entier supérieur le plus proche.
   const numRows = Math.ceil(uniqueIngredients.length / numColumns);
-  // Définit le nombre de colonnes (3 dans cet exemple) et le nombre de lignes nécessaires en fonction de la longueur du tableau des ingrédients uniques
+  // Définit le nombre de colonnes et le nombre de lignes nécessaires en fonction de la longueur du tableau des ingrédients uniques
 
   for (let i = 0; i < numRows; i++) {
     const row = document.createElement("div");
